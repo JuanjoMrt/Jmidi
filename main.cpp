@@ -1,4 +1,4 @@
-#include "qjmidi.h"
+#include "header/qjmidi.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

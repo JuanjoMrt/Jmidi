@@ -26,13 +26,13 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        qjmidi.cpp
+        src/qjmidi.cpp
 
 HEADERS += \
-        qjmidi.h
+        header/qjmidi.h
 
 FORMS += \
-        qjmidi.ui
+        ui/qjmidi.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

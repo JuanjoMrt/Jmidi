@@ -184,10 +184,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="qjmidi.cpp" />
+    <ClCompile Include="src\qjmidi.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="qjmidi.h">
+    <QtMoc Include="header\qjmidi.h">
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -210,7 +210,7 @@
     <ClInclude Include="ui_qjmidi.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="qjmidi.ui">
+    <QtUic Include="ui\qjmidi.ui">
     </QtUic>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,4 +1,4 @@
-#include "qjmidi.h"
+#include "header/qjmidi.h"
 #include "ui_qjmidi.h"
 
 QJmidi::QJmidi(QWidget *parent) :
