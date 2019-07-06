@@ -6,20 +6,189 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>901</width>
+    <height>738</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>QJmidi</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="pb_generar_midi">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>570</y>
+      <width>100</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> Generar
+MIDI</string>
+    </property>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget_voces">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>220</y>
+      <width>811</width>
+      <height>275</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::South</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <property name="elideMode">
+     <enum>Qt::ElideNone</enum>
+    </property>
+    <widget class="QWidget" name="tab_0">
+     <attribute name="title">
+      <string>Todos</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QComboBox" name="cb_instrument">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QGraphicsView" name="graphicsView_2"/>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>871</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="pb_nota">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>90</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Nota</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>90</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Nota</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>90</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Nota</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>90</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Nota</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="pte_output">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>90</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>90</height>
+        </size>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>901</width>
      <height>26</height>
     </rect>
    </property>
