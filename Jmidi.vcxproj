@@ -183,6 +183,11 @@
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="lib\midifile\src\Binasc.cpp" />
+    <ClCompile Include="lib\midifile\src\MidiEvent.cpp" />
+    <ClCompile Include="lib\midifile\src\MidiEventList.cpp" />
+    <ClCompile Include="lib\midifile\src\MidiFile.cpp" />
+    <ClCompile Include="lib\midifile\src\MidiMessage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\qjmidi.cpp" />
   </ItemGroup>
@@ -207,6 +212,11 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_predefs.h;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </CustomBuild>
+    <ClInclude Include="lib\midifile\include\Binasc.h" />
+    <ClInclude Include="lib\midifile\include\MidiEvent.h" />
+    <ClInclude Include="lib\midifile\include\MidiEventList.h" />
+    <ClInclude Include="lib\midifile\include\MidiFile.h" />
+    <ClInclude Include="lib\midifile\include\MidiMessage.h" />
     <ClInclude Include="ui_qjmidi.h" />
   </ItemGroup>
   <ItemGroup>
