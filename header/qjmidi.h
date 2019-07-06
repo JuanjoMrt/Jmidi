@@ -5,8 +5,11 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <QInputDialog>
+#include <QMessageBox>
 
 #include "lib/midifile/include/MidiFile.h"
+
 using namespace std;
 
 
@@ -22,12 +25,14 @@ public:
     explicit QJmidi(QWidget *parent = nullptr);
     ~QJmidi();
 
-	void pruebaMidifile();
-
 private slots:
     void on_pb_generar_midi_clicked();
 
     void on_pb_nota_clicked();
+
+    void on_actionGenerate_Example_triggered();
+
+    void on_pb_nota_2_clicked();
 
 private:
     Ui::QJmidi *ui;

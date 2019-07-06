@@ -123,6 +123,10 @@
       <OutputFile>ui_qjmidi.h</OutputFile>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
     </QtUic>
+    <QtRcc>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
+    </QtRcc>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -181,6 +185,10 @@
       <OutputFile>ui_qjmidi.h</OutputFile>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
     </QtUic>
+    <QtRcc>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
+    </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lib\midifile\src\Binasc.cpp" />
@@ -217,11 +225,23 @@
     <ClInclude Include="lib\midifile\include\MidiEventList.h" />
     <ClInclude Include="lib\midifile\include\MidiFile.h" />
     <ClInclude Include="lib\midifile\include\MidiMessage.h" />
-    <ClInclude Include="ui_qjmidi.h" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\qjmidi.ui">
     </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="ui\resources.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="ui\icons\quarter-note-512px.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="ui\icons\quarter-note-rest-512px.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

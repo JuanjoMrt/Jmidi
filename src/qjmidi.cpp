@@ -13,7 +13,27 @@ QJmidi::~QJmidi()
     delete ui;
 }
 
-void QJmidi::pruebaMidifile() {
+void QJmidi::on_pb_generar_midi_clicked()
+{
+}
+
+void QJmidi::on_pb_nota_clicked()
+{
+	bool ok;
+	int velocity = QInputDialog::getInt(this, tr("QInputDialog::getInteger()"),
+								tr("Percentage:"), 100,0,127,1,&ok);
+	if (!ok) {
+		QMessageBox message;
+		message.setText("Ha ocurrido un problema.");
+		message.exec();
+	}
+
+	this->ui->pte_output->appendPlainText(QString::QString("Se ha seleccionado altura %0.").arg(QString::number(velocity)));
+
+}
+
+void QJmidi::on_actionGenerate_Example_triggered()
+{
 	int track = 0;
 	int channel = 0;
 	int instr = 43;
@@ -34,15 +54,9 @@ void QJmidi::pruebaMidifile() {
 	string filename = "prueba.mid";
 	if (filename.empty()) cout << midifile;
 	else midifile.write(filename);
-
 }
 
-void QJmidi::on_pb_generar_midi_clicked()
+void QJmidi::on_pb_nota_2_clicked()
 {
-	this->pruebaMidifile();
-}
 
-void QJmidi::on_pb_nota_clicked()
-{
-	
 }
