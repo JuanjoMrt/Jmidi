@@ -32,7 +32,7 @@ private slots:
 
     void on_actionGenerate_Example_triggered();
 
-    void on_pb_nota_2_clicked();
+    void on_pb_rest_clicked();
 
 private:
     Ui::QJmidi *ui;

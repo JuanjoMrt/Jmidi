@@ -21,7 +21,7 @@ void QJmidi::on_pb_nota_clicked()
 {
 	bool ok;
 	int velocity = QInputDialog::getInt(this, tr("QInputDialog::getInteger()"),
-								tr("Percentage:"), 100,0,127,1,&ok);
+								tr("Intensidad:"), 100,0,127,1,&ok);
 	if (!ok) {
 		QMessageBox message;
 		message.setText("Ha ocurrido un problema.");
@@ -56,7 +56,6 @@ void QJmidi::on_actionGenerate_Example_triggered()
 	else midifile.write(filename);
 }
 
-void QJmidi::on_pb_nota_2_clicked()
-{
+void QJmidi::on_pb_rest_clicked() {
 
 }
