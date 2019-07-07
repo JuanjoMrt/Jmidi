@@ -55,9 +55,12 @@ MIDI</string>
     <property name="elideMode">
      <enum>Qt::ElideNone</enum>
     </property>
+    <property name="tabBarAutoHide">
+     <bool>false</bool>
+    </property>
     <widget class="QWidget" name="tab_0">
      <attribute name="title">
-      <string>Todos</string>
+      <string>All</string>
      </attribute>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -89,6 +92,43 @@ MIDI</string>
       </item>
       <item>
        <widget class="QGraphicsView" name="graphicsView_2"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="tab_1">
+     <attribute name="title">
+      <string>Track 1</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QComboBox" name="cb_instrument_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QGraphicsView" name="graphicsView_3"/>
       </item>
      </layout>
     </widget>
@@ -127,7 +167,7 @@ MIDI</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pb_nota_2">
+      <widget class="QPushButton" name="pb_rest">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
