@@ -28,7 +28,7 @@
 MIDI</string>
     </property>
    </widget>
-   <widget class="QTabWidget" name="tabWidget_voces">
+   <widget class="QTabWidget" name="tabWidget_tracks">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -92,43 +92,6 @@ MIDI</string>
       </item>
       <item>
        <widget class="QGraphicsView" name="graphicsView_2"/>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="tab_1">
-     <attribute name="title">
-      <string>Track 1</string>
-     </attribute>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QComboBox" name="cb_instrument_2">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QGraphicsView" name="graphicsView_3"/>
       </item>
      </layout>
     </widget>
@@ -254,6 +217,26 @@ MIDI</string>
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="pb_add_track_tab">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>500</y>
+      <width>50</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Añadir track</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/icons/icons/add-512px.png</normaloff>:/icons/icons/add-512px.png</iconset>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

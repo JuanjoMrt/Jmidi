@@ -9,6 +9,8 @@
 #include <QMessageBox>
 
 #include "lib/midifile/include/MidiFile.h"
+#include "header/sheet.h"
+#include "header/track_tab_widget.h"
 
 using namespace std;
 
@@ -25,6 +27,8 @@ public:
     explicit QJmidi(QWidget *parent = nullptr);
     ~QJmidi();
 
+	void addTrackTab();
+
 private slots:
     void on_pb_generar_midi_clicked();
 
@@ -33,6 +37,8 @@ private slots:
     void on_actionGenerate_Example_triggered();
 
     void on_pb_rest_clicked();
+
+    void on_pb_add_track_tab_clicked();
 
 private:
     Ui::QJmidi *ui;

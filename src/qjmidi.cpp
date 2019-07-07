@@ -13,6 +13,23 @@ QJmidi::~QJmidi()
     delete ui;
 }
 
+void QJmidi::addTrackTab() {
+	int tab_widget_count = this->ui->tabWidget_tracks->count();
+	if (tab_widget_count < 9) {
+		track_tab_widget *newTab = new track_tab_widget();
+		QString name = QString::QString("Track %0").arg(QString::number(tab_widget_count));
+		this->ui->tabWidget_tracks->addTab(newTab, name);
+
+		this->ui->pte_output->appendPlainText( QString::QString("Creada tab para %0.").arg(name) );
+	}
+	else{
+		QMessageBox message;
+		message.setText(QString::fromUtf8("El número máximo de tabs es de 9")
+		);
+		message.exec();
+	}
+}
+
 void QJmidi::on_pb_generar_midi_clicked()
 {
 }
@@ -57,5 +74,9 @@ void QJmidi::on_actionGenerate_Example_triggered()
 }
 
 void QJmidi::on_pb_rest_clicked() {
-
 }
+
+void QJmidi::on_pb_add_track_tab_clicked() {
+	this->addTrackTab();
+}
+

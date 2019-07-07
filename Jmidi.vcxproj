@@ -191,6 +191,7 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="header\sheet.h" />
     <ClCompile Include="lib\midifile\src\Binasc.cpp" />
     <ClCompile Include="lib\midifile\src\MidiEvent.cpp" />
     <ClCompile Include="lib\midifile\src\MidiEventList.cpp" />
@@ -198,6 +199,8 @@
     <ClCompile Include="lib\midifile\src\MidiMessage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\qjmidi.cpp" />
+    <ClCompile Include="src\sheet.cpp" />
+    <ClCompile Include="src\track_tab_widget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="header\qjmidi.h">
@@ -220,6 +223,12 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_predefs.h;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </CustomBuild>
+    <QtMoc Include="header\track_tab_widget.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\debug;C:\VulkanSDK\1.0.51.0\include;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DEPRECATED_WARNINGS;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\release;C:\VulkanSDK\1.0.51.0\include;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</Define>
+    </QtMoc>
     <ClInclude Include="lib\midifile\include\Binasc.h" />
     <ClInclude Include="lib\midifile\include\MidiEvent.h" />
     <ClInclude Include="lib\midifile\include\MidiEventList.h" />
@@ -228,6 +237,10 @@
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\qjmidi.ui">
+    </QtUic>
+    <QtUic Include="ui\track_tab_widget.ui">
+      <OutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\ui_%(Filename).h</OutputFile>
+      <OutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\ui_%(Filename).h</OutputFile>
     </QtUic>
   </ItemGroup>
   <ItemGroup>

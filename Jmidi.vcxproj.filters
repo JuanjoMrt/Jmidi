@@ -69,6 +69,15 @@
     <ClCompile Include="lib\midifile\src\MidiMessage.cpp">
       <Filter>Source Files\Midifile</Filter>
     </ClCompile>
+    <ClCompile Include="src\sheet.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="header\sheet.h">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\track_tab_widget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -82,9 +91,15 @@
     <QtMoc Include="header\qjmidi.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="header\track_tab_widget.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\qjmidi.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ui\track_tab_widget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

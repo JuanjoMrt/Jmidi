@@ -26,13 +26,16 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        src/qjmidi.cpp
+        src/qjmidi.cpp \
+        src/track_tab_widget.cpp
 
 HEADERS += \
-        header/qjmidi.h
+        header/qjmidi.h \
+        header/track_tab_widget.h
 
 FORMS += \
-        ui/qjmidi.ui
+        ui/qjmidi.ui \
+        ui/track_tab_widget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
