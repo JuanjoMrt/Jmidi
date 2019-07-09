@@ -12,3 +12,12 @@ track_tab_widget::~track_tab_widget()
 {
     delete ui;
 }
+
+void track_tab_widget::setInstrument(QString instrument, int key) {
+	this->instrument = key;
+	this->ui->tb_instrument->insertPlainText(instrument);
+}
+
+int track_tab_widget::getInstrument() {
+	return this->instrument;
+}

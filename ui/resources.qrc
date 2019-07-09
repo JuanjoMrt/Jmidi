@@ -1,7 +1,10 @@
 <RCC>
-  <qresource prefix="/icons">
-    <file>icons/add-512px.png</file>
-    <file>icons/quarter-note-512px.png</file>
-    <file>icons/quarter-note-rest-512px.png</file>
-  </qresource>
+    <qresource prefix="/icons">
+        <file>icons/add-512px.png</file>
+        <file>icons/quarter-note-512px.png</file>
+        <file>icons/quarter-note-rest-512px.png</file>
+    </qresource>
+    <qresource>
+        <file>resources/instruments.txt</file>
+    </qresource>
 </RCC>

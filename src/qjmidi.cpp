@@ -6,6 +6,10 @@ QJmidi::QJmidi(QWidget *parent) :
     ui(new Ui::QJmidi)
 {
     ui->setupUi(this);
+
+	// leemos el archivo de instrumentos
+	//this->loadInstruments();
+
 }
 
 QJmidi::~QJmidi()
@@ -15,19 +19,56 @@ QJmidi::~QJmidi()
 
 void QJmidi::addTrackTab() {
 	int tab_widget_count = this->ui->tabWidget_tracks->count();
-	if (tab_widget_count < 9) {
-		track_tab_widget *newTab = new track_tab_widget();
-		QString name = QString::QString("Track %0").arg(QString::number(tab_widget_count));
-		this->ui->tabWidget_tracks->addTab(newTab, name);
+	if (tab_widget_count <= 9) {
+		
+		SelectInstrumentDialog select_instrument;
+		select_instrument.setModal(true);
+		int result = select_instrument.exec();
+		QString instrument_string = select_instrument.getInstrumentString();
+		int instrument_key = select_instrument.getSelectedInstrument();
 
-		this->ui->pte_output->appendPlainText( QString::QString("Creada tab para %0.").arg(name) );
+		if (result == QDialog::Accepted) {
+
+			track_tab_widget *newTab = new track_tab_widget();
+			QString name = QString::QString("Track %0").arg(QString::number(tab_widget_count));
+			this->ui->tabWidget_tracks->addTab(newTab, name);
+
+			
+		
+			newTab->setInstrument(instrument_string, instrument_key);
+
+			this->ui->pte_output->appendPlainText( QString::QString("Creada tab para %0:%1.").arg(QString::number(instrument_key),instrument_string) );
+			// Añadir la track al Midifile con el instrumento elegido
+
+		}
 	}
 	else{
 		QMessageBox message;
-		message.setText(QString::fromUtf8("El número máximo de tabs es de 9")
+		message.setText(QString::fromUtf8("El número máximo de tracks es de 9")
 		);
 		message.exec();
 	}
+
+}
+
+QString QJmidi::readFile(QString filename) {
+	QFile mFile(filename);
+
+	if (!mFile.open(QFile::ReadOnly | QFile::Text)) {
+		//qDebug() << "could not open file for read";
+		//return;
+		QMessageBox message;
+		QString error = QString("Ha ocurrido un problema leyendo el archivo: \n%0").arg(filename);
+		message.setText(error);
+		message.exec();
+	}
+
+	QTextStream in(&mFile);
+	QString mText = in.readAll();
+
+
+	mFile.close();
+	return mText;
 }
 
 void QJmidi::on_pb_generar_midi_clicked()
@@ -79,4 +120,14 @@ void QJmidi::on_pb_rest_clicked() {
 void QJmidi::on_pb_add_track_tab_clicked() {
 	this->addTrackTab();
 }
+
+//void QJmidi::loadInstruments() {
+//	QString file = this->readFile(":/resources/instruments.txt");
+//	QStringList file_list = file.split(',');
+//	for (int i = 0; i < file_list.size(); i+=2) {
+//		QPair<int, QString> aux( file_list[i].toInt(), file_list[i+1] );
+//		this->instruments.push_back(aux);
+//	}
+//
+//}
 

@@ -17,12 +17,21 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QComboBox" name="cb_instrument_2">
+      <widget class="QTextBrowser" name="tb_instrument">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>22</height>
+        </size>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
       </widget>
      </item>
@@ -42,7 +51,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QGraphicsView" name="graphicsView_3"/>
+    <widget class="QGraphicsView" name="gv_sheet"/>
    </item>
   </layout>
  </widget>

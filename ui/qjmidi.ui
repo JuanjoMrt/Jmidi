@@ -55,6 +55,9 @@ MIDI</string>
     <property name="elideMode">
      <enum>Qt::ElideNone</enum>
     </property>
+    <property name="tabsClosable">
+     <bool>true</bool>
+    </property>
     <property name="tabBarAutoHide">
      <bool>false</bool>
     </property>

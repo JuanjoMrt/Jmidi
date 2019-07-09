@@ -10,6 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Jmidi
 TEMPLATE = app
+INCLUDEPATH += .
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -26,16 +27,14 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        src/qjmidi.cpp \
-        src/track_tab_widget.cpp
+        src/*
 
 HEADERS += \
-        header/qjmidi.h \
-        header/track_tab_widget.h
+        header/*
 
 FORMS += \
-        ui/qjmidi.ui \
-        ui/track_tab_widget.ui
+        select_instrument_dialog.ui \
+        ui/*
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
