@@ -28,17 +28,31 @@ void QJmidi::addTrackTab() {
 		int instrument_key = select_instrument.getSelectedInstrument();
 
 		if (result == QDialog::Accepted) {
-
+			// Creamos y añadimos la pestaña nueva
 			track_tab_widget *newTab = new track_tab_widget();
 			QString name = QString::QString("Track %0").arg(QString::number(tab_widget_count));
 			this->ui->tabWidget_tracks->addTab(newTab, name);
 
-			
-		
+			// Establecemos el instrumento en la pestaña
 			newTab->setInstrument(instrument_string, instrument_key);
 
-			this->ui->pte_output->appendPlainText( QString::QString("Creada tab para %0:%1.").arg(QString::number(instrument_key),instrument_string) );
 			// Añadir la track al Midifile con el instrumento elegido
+			int tempo = 60.0;
+			if (tab_widget_count <= 1 ){
+				this->midifile.addTempo(tab_widget_count - 1, 0, tempo);
+				//this->ui->pte_output->appendPlainText("tab 0");
+			}
+			else {
+				int result = this->midifile.addTrack();
+				//this->ui->pte_output->appendPlainText(QString::QString("tab %0").arg(QString::number(result)));
+				this->midifile.addTempo(tab_widget_count - 1, 0, tempo);
+			}
+
+			
+			// Mostramos lo hecho en la consola
+			this->ui->pte_output->appendPlainText(QString::QString("Creada tab %0 para \"%1:%2\". Con tempo %3.").arg(	QString::number(tab_widget_count - 1), 
+																														QString::number(instrument_key), instrument_string, 
+																														QString::number(tempo)));
 
 		}
 	}
@@ -77,16 +91,24 @@ void QJmidi::on_pb_generar_midi_clicked()
 
 void QJmidi::on_pb_nota_clicked()
 {
-	bool ok;
-	int velocity = QInputDialog::getInt(this, tr("QInputDialog::getInteger()"),
-								tr("Intensidad:"), 100,0,127,1,&ok);
-	if (!ok) {
+	//int velocity = QInputDialog::getInt(this, tr("QInputDialog::getInteger()"),
+	//							tr("Intensidad:"), 100,0,127,1,&ok);
+	SelectNoteDialog note_dialog;
+	note_dialog.setModal(true);
+	int result = note_dialog.exec();
+
+	if (result == QDialog::Accepted) {
+
+
+		this->ui->pte_output->appendPlainText(QString::QString("Se ha seleccionado altura %0.").arg(QString::number(velocity)));
+	}
+	else {
 		QMessageBox message;
 		message.setText("Ha ocurrido un problema.");
 		message.exec();
 	}
 
-	this->ui->pte_output->appendPlainText(QString::QString("Se ha seleccionado altura %0.").arg(QString::number(velocity)));
+	
 
 }
 

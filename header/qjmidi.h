@@ -21,6 +21,7 @@
 #include "header/sheet.h"
 #include "header/track_tab_widget.h"
 #include "header/select_instrument_dialog.h"
+#include "header/select_note_dialog.h"
 
 using namespace std;
 
