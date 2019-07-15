@@ -37,7 +37,7 @@ void QJmidi::addTrackTab() {
 			newTab->setInstrument(instrument_string, instrument_key);
 
 			// Añadir la track al Midifile con el instrumento elegido
-			int tempo = 60.0;
+			
 			if (tab_widget_count <= 1 ){
 				this->midifile.addTempo(tab_widget_count - 1, 0, tempo);
 				//this->ui->pte_output->appendPlainText("tab 0");
@@ -93,14 +93,14 @@ void QJmidi::on_pb_nota_clicked()
 {
 	//int velocity = QInputDialog::getInt(this, tr("QInputDialog::getInteger()"),
 	//							tr("Intensidad:"), 100,0,127,1,&ok);
-	SelectNoteDialog note_dialog;
+	SelectNoteDialog note_dialog(this,this->tempo);
 	note_dialog.setModal(true);
 	int result = note_dialog.exec();
 
 	if (result == QDialog::Accepted) {
 
 
-		this->ui->pte_output->appendPlainText(QString::QString("Se ha seleccionado altura %0.").arg(QString::number(velocity)));
+		//this->ui->pte_output->appendPlainText(QString::QString("Se ha seleccionado altura %0.").arg(QString::number(velocity)));
 	}
 	else {
 		QMessageBox message;
@@ -115,7 +115,7 @@ void QJmidi::on_pb_nota_clicked()
 void QJmidi::on_actionGenerate_Example_triggered()
 {
 	int track = 0;
-	int channel = 0;
+	int channel = 9;
 	int instr = 43;
 	int a = 2;
 	int b = 3;
@@ -123,17 +123,38 @@ void QJmidi::on_actionGenerate_Example_triggered()
 	double dur = 2.0;
 	double tempo = 60.0;
 
-	this->midifile.setTPQ(2);
-	this->midifile.addTempo(0, 0, tempo);
+	//this->midifile.setTPQ(2);
+	//this->midifile.addTempo(0, 0, tempo);
 
+	//int tpq = midifile.getTPQ();
+	//for (int i = 0; i < 50; i++) {
+	//	midifile.addNoteOn(track, i*2.0, 9, instr, 127);
+	//	midifile.addNoteOff(track, (i + 1)*2.0, 9, instr);
+	//}
+	this->midifile.setTPQ(120);
+	this->midifile.addTempo(0, 0, tempo);
+	
+	int duracion = 120;
 	int tpq = midifile.getTPQ();
-	for (int i = 0; i < 50; i++) {
-		midifile.addNoteOn(track, i*2.0, 9, instr, 127);
-		midifile.addNoteOff(track, (i + 1)*2.0, 9, instr);
-	}
+	midifile.addNoteOn(track, 0 * tpq, channel, instr, 127);
+	midifile.addNoteOff(track, 0 * tpq + duracion, channel, instr);
+
+	midifile.addNoteOn(track, 1 * tpq, channel, instr, 127);
+	midifile.addNoteOff(track, 1 * tpq + 1, channel, instr);
+
+	midifile.addNoteOn(track, 2 * tpq, channel, instr, 127);
+	midifile.addNoteOff(track, 2 * tpq + duracion, channel, instr);
+
+	midifile.addNoteOn(track, 3 * tpq, channel, instr, 127);
+	midifile.addNoteOff(track, 3 * tpq + duracion, channel, instr);
+
+	midifile.addNoteOn(track, 4 * tpq, channel, instr, 127);
+	midifile.addNoteOff(track, 4 * tpq + duracion, channel, instr);
+
 	string filename = "prueba.mid";
 	if (filename.empty()) cout << midifile;
 	else midifile.write(filename);
+	close();
 }
 
 void QJmidi::on_pb_rest_clicked() {

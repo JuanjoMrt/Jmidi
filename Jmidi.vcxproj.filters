@@ -69,20 +69,23 @@
     <ClCompile Include="lib\midifile\src\MidiMessage.cpp">
       <Filter>Source Files\Midifile</Filter>
     </ClCompile>
-    <ClCompile Include="src\sheet.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="header\sheet.h">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\track_tab_widget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\select_instrument_dialog.cpp">
-      <Filter>Generated Files</Filter>
+    <ClCompile Include="src\note.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="header\sheet.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sheet.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\select_note_dialog.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\select_instrument_dialog.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,11 +103,11 @@
     <QtMoc Include="header\track_tab_widget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="header\select_instrument_dialog.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
     <QtMoc Include="header\select_note_dialog.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="header\select_instrument_dialog.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +139,12 @@
     </ClInclude>
     <ClInclude Include="lib\midifile\include\MidiMessage.h">
       <Filter>Header Files\Midifile</Filter>
+    </ClInclude>
+    <ClInclude Include="note.h">
+      <Filter>Form Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\note.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

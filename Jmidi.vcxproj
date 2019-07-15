@@ -198,6 +198,7 @@
     <ClCompile Include="lib\midifile\src\MidiFile.cpp" />
     <ClCompile Include="lib\midifile\src\MidiMessage.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\note.cpp" />
     <ClCompile Include="src\qjmidi.cpp" />
     <ClCompile Include="src\select_instrument_dialog.cpp" />
     <ClCompile Include="src\select_note_dialog.cpp" />
@@ -209,6 +210,8 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\note.h" />
+    <ClInclude Include="note.h" />
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>360</width>
+    <width>433</width>
     <height>258</height>
    </rect>
   </property>
@@ -19,12 +19,12 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Selectiona la ntensidad:</string>
+        <string>Selectiona la intensidad:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="spinBox"/>
+      <widget class="QSpinBox" name="sb_velocity"/>
      </item>
     </layout>
    </item>
@@ -120,6 +120,11 @@
          <width>70</width>
          <height>70</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>6</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>staccatissimo</string>

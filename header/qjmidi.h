@@ -22,6 +22,7 @@
 #include "header/track_tab_widget.h"
 #include "header/select_instrument_dialog.h"
 #include "header/select_note_dialog.h"
+#include "header/note.h"
 
 using namespace std;
 
@@ -55,7 +56,9 @@ private slots:
 private:
     Ui::QJmidi *ui;
 	smf::MidiFile midifile;
-
+	int tempo = 60.0;
+	// Objeto tipo Sheet es realmente necesario?
+	//Sheet partitura;
 	//vector< QPair<int,QString> > instruments;
 
 
