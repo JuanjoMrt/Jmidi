@@ -8,27 +8,15 @@ SelectNoteDialog::SelectNoteDialog(QWidget *parent) :
     ui->setupUi(this);
 }
 
-SelectNoteDialog::SelectNoteDialog(QWidget *parent, double tempo) :
-	QDialog(parent),
-	ui(new Ui::SelectNoteDialog) 
-{
-	ui->setupUi(this);
-	this->tempo = tempo;
-}
-
 SelectNoteDialog::~SelectNoteDialog()
 {
     delete ui;
 }
 
-void SelectNoteDialog::setTempo(double tempo) {
-	this->tempo = tempo;
-}
 
 void SelectNoteDialog::on_buttonBox_accepted()
 {
 	this->note.velocity = this->ui->sb_velocity->value();
-
 	close();
 }
 
@@ -50,4 +38,8 @@ void SelectNoteDialog::on_pc_staccatissimo_clicked()
 void SelectNoteDialog::on_pc_tenuto_clicked()
 {
     this->note.duration_symbol = TENUTO;
+}
+
+Note SelectNoteDialog::getNote() {
+	return this->note;
 }

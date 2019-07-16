@@ -34,10 +34,10 @@ MIDI</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>220</y>
-      <width>811</width>
-      <height>275</height>
+      <x>10</x>
+      <y>140</y>
+      <width>871</width>
+      <height>351</height>
      </rect>
     </property>
     <property name="sizePolicy">

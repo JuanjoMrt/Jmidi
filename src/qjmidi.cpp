@@ -93,14 +93,15 @@ void QJmidi::on_pb_nota_clicked()
 {
 	//int velocity = QInputDialog::getInt(this, tr("QInputDialog::getInteger()"),
 	//							tr("Intensidad:"), 100,0,127,1,&ok);
-	SelectNoteDialog note_dialog(this,this->tempo);
+	SelectNoteDialog note_dialog;
 	note_dialog.setModal(true);
 	int result = note_dialog.exec();
 
 	if (result == QDialog::Accepted) {
 
-
-		//this->ui->pte_output->appendPlainText(QString::QString("Se ha seleccionado altura %0.").arg(QString::number(velocity)));
+		Note note = note_dialog.getNote();
+		this->ui->pte_output->appendPlainText(QString::QString("Nota con intensidad %0.").arg(QString::number(note.velocity)));
+		this->addNote(note);
 	}
 	else {
 		QMessageBox message;
@@ -162,6 +163,10 @@ void QJmidi::on_pb_rest_clicked() {
 
 void QJmidi::on_pb_add_track_tab_clicked() {
 	this->addTrackTab();
+}
+
+void QJmidi::addNote(Note note) {
+	
 }
 
 //void QJmidi::loadInstruments() {

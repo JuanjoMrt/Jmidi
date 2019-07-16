@@ -87,6 +87,9 @@
     <ClCompile Include="src\select_instrument_dialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\hexagram_scene.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="header\note.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\hexagram_scene.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

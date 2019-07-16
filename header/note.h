@@ -13,11 +13,12 @@ public:
 	Note();
 	~Note();
 
-	// This will be private and getter and setter methods
-	// will be used instead of direct access
+	// Return the duration of the note in ticks
+	int CalculateDurationTicks(int tpq);
 
-	// This is the time that the note will be played
-	double duration = 0;
+	// This will be private in a future update
+	// and getter and setter methods
+	// will be used instead of direct access
 
 	// This is the velocity at which the note will be pressed
 	int velocity;

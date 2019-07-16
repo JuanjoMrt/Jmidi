@@ -61,6 +61,9 @@ private:
 	//Sheet partitura;
 	//vector< QPair<int,QString> > instruments;
 
+	// Adds a note to midifile and to the sheet
+	void addNote(Note note);
+
 
 	//void loadInstruments();
 };

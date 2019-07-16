@@ -24,7 +24,17 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="sb_velocity"/>
+      <widget class="QSpinBox" name="sb_velocity">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>127</number>
+       </property>
+       <property name="value">
+        <number>100</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
