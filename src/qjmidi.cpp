@@ -123,33 +123,33 @@ void QJmidi::on_actionGenerate_Example_triggered()
 	double dur = 2.0;
 	double tempo = 60.0;
 
-	//this->midifile.setTPQ(2);
-	//this->midifile.addTempo(0, 0, tempo);
-
-	//int tpq = midifile.getTPQ();
-	//for (int i = 0; i < 50; i++) {
-	//	midifile.addNoteOn(track, i*2.0, 9, instr, 127);
-	//	midifile.addNoteOff(track, (i + 1)*2.0, 9, instr);
-	//}
-	this->midifile.setTPQ(120);
+	this->midifile.setTPQ(2);
 	this->midifile.addTempo(0, 0, tempo);
-	
-	int duracion = 120;
+
 	int tpq = midifile.getTPQ();
-	midifile.addNoteOn(track, 0 * tpq, channel, instr, 127);
-	midifile.addNoteOff(track, 0 * tpq + duracion, channel, instr);
+	for (int i = 0; i < 50; i++) {
+		midifile.addNoteOn(track, i*2.0, 9, instr, 127);
+		midifile.addNoteOff(track, (i + 1)*2.0, 9, instr);
+	}
+	//this->midifile.setTPQ(120);
+	//this->midifile.addTempo(0, 0, tempo);
+	
+	//int duracion = 120;
+	//int tpq = midifile.getTPQ();
+	//midifile.addNoteOn(track, 0 * tpq, channel, instr, 127);
+	//midifile.addNoteOff(track, 0 * tpq + duracion, channel, instr,1);
 
-	midifile.addNoteOn(track, 1 * tpq, channel, instr, 127);
-	midifile.addNoteOff(track, 1 * tpq + 1, channel, instr);
+	//midifile.addNoteOn(track, 1 * tpq, channel, instr, 127);
+	//midifile.addNoteOff(track, 1 * tpq + 1, channel, instr);
 
-	midifile.addNoteOn(track, 2 * tpq, channel, instr, 127);
-	midifile.addNoteOff(track, 2 * tpq + duracion, channel, instr);
+	//midifile.addNoteOn(track, 2 * tpq, channel, instr, 127);
+	//midifile.addNoteOff(track, 2 * tpq + duracion, channel, instr);
 
-	midifile.addNoteOn(track, 3 * tpq, channel, instr, 127);
-	midifile.addNoteOff(track, 3 * tpq + duracion, channel, instr);
+	//midifile.addNoteOn(track, 3 * tpq, channel, instr, 127);
+	//midifile.addNoteOff(track, 3 * tpq + duracion, channel, instr);
 
-	midifile.addNoteOn(track, 4 * tpq, channel, instr, 127);
-	midifile.addNoteOff(track, 4 * tpq + duracion, channel, instr);
+	//midifile.addNoteOn(track, 4 * tpq, channel, instr, 127);
+	//midifile.addNoteOff(track, 4 * tpq + duracion, channel, instr);
 
 	string filename = "prueba.mid";
 	if (filename.empty()) cout << midifile;
