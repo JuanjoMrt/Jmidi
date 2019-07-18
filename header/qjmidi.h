@@ -57,12 +57,17 @@ private:
     Ui::QJmidi *ui;
 	smf::MidiFile midifile;
 	int tempo = 60.0;
+	int channel = 9;
+	vector< track_tab_widget *> vector_tab;
 	// Objeto tipo Sheet es realmente necesario?
 	//Sheet partitura;
 	//vector< QPair<int,QString> > instruments;
 
 	// Adds a note to midifile and to the sheet
 	void addNote(Note note);
+	void trackNotCreatedError();
+	int getLastTick(int track);
+
 
 
 	//void loadInstruments();

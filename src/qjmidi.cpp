@@ -9,7 +9,7 @@ QJmidi::QJmidi(QWidget *parent) :
 
 	// leemos el archivo de instrumentos
 	//this->loadInstruments();
-
+	
 }
 
 QJmidi::~QJmidi()
@@ -18,6 +18,7 @@ QJmidi::~QJmidi()
 }
 
 void QJmidi::addTrackTab() {
+	
 	int tab_widget_count = this->ui->tabWidget_tracks->count();
 	if (tab_widget_count <= 9) {
 		
@@ -30,6 +31,7 @@ void QJmidi::addTrackTab() {
 		if (result == QDialog::Accepted) {
 			// Creamos y añadimos la pestaña nueva
 			track_tab_widget *newTab = new track_tab_widget();
+			this->vector_tab.push_back(newTab);
 			QString name = QString::QString("Track %0").arg(QString::number(tab_widget_count));
 			this->ui->tabWidget_tracks->addTab(newTab, name);
 
@@ -91,26 +93,29 @@ void QJmidi::on_pb_generar_midi_clicked()
 
 void QJmidi::on_pb_nota_clicked()
 {
-	//int velocity = QInputDialog::getInt(this, tr("QInputDialog::getInteger()"),
-	//							tr("Intensidad:"), 100,0,127,1,&ok);
-	SelectNoteDialog note_dialog;
-	note_dialog.setModal(true);
-	int result = note_dialog.exec();
-
-	if (result == QDialog::Accepted) {
-
-		Note note = note_dialog.getNote();
-		this->ui->pte_output->appendPlainText(QString::QString("Nota con intensidad %0.").arg(QString::number(note.velocity)));
-		this->addNote(note);
+	if (this->ui->tabWidget_tracks->count() <= 1) {
+		this->trackNotCreatedError();
 	}
 	else {
-		QMessageBox message;
-		message.setText("Ha ocurrido un problema.");
-		message.exec();
+		//int velocity = QInputDialog::getInt(this, tr("QInputDialog::getInteger()"),
+		//							tr("Intensidad:"), 100,0,127,1,&ok);
+		SelectNoteDialog note_dialog;
+		note_dialog.setModal(true);
+		int result = note_dialog.exec();
+
+		if (result == QDialog::Accepted) {
+
+			Note note = note_dialog.getNote();
+			this->ui->pte_output->appendPlainText(QString::QString("Nota con intensidad %0 y duracion %1.").arg(QString::number(note.velocity), 
+																												QString::number(note.CalculateDurationTicks(midifile.getTPQ()))));
+			this->addNote(note);
+		}
+		else {
+			QMessageBox message;
+			message.setText("Ha ocurrido un problema.");
+			message.exec();
+		}
 	}
-
-	
-
 }
 
 void QJmidi::on_actionGenerate_Example_triggered()
@@ -159,6 +164,15 @@ void QJmidi::on_actionGenerate_Example_triggered()
 }
 
 void QJmidi::on_pb_rest_clicked() {
+	if (this->ui->tabWidget_tracks->count() <= 1) {
+		this->trackNotCreatedError();
+	}
+	else {
+
+		// Solo para test
+		Note nota;
+		this->addNote(nota);
+	}
 }
 
 void QJmidi::on_pb_add_track_tab_clicked() {
@@ -166,7 +180,40 @@ void QJmidi::on_pb_add_track_tab_clicked() {
 }
 
 void QJmidi::addNote(Note note) {
+	int index = this->ui->tabWidget_tracks->currentIndex();
+
+	//midifile.addNoteOn(0, 0 * 120, 9, 35, 127);
+	//midifile.addNoteOff(0, 0 * 120 + 30, 9, 35,1);
+
+	//int indexx = this->midifile.getEventCount(0);
+
+	int last_tick = this->getLastTick(index - 1);
+	track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
+	int instrument = current_tab->getInstrument();
+
+	midifile.addNoteOn(index - 1, last_tick, this->channel, instrument, note.velocity );
+	midifile.addNoteOff(index - 1, last_tick + note.CalculateDurationTicks( midifile.getTPQ() ), this->channel, instrument, note.velocity);
+
+	this->ui->pte_output->appendPlainText(QString("Añadida nota en el tick: %0").arg(QString::number(last_tick)));
+	// Get a track_tab_widget pointer to the object inside the tab
+	//track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
+
 	
+}
+
+void QJmidi::trackNotCreatedError() {
+	QMessageBox message;
+	message.setText("Tienes que crear al menos una track para poder hacer esto.");
+	message.exec();
+}
+
+int QJmidi::getLastTick(int track) {
+	int index = this->midifile.getEventCount(track);
+	int last_tick = 0;
+	if (index != 0) {
+		last_tick = this->midifile.getEvent(track, index-1).tick;
+	}
+	return last_tick;
 }
 
 //void QJmidi::loadInstruments() {
