@@ -30,6 +30,13 @@ track_tab_widget::track_tab_widget(QWidget *parent) :
 	for (int i = 0; i < hexagram_lenth; i += distance_btw_vlines) {
 		this->scene->addLine(i, 0, i, distance_btw_hlines * 5, pen);
 	}
+
+	// Establecemos la clave de intensidad
+	SetClaveIntensidad(0, 127);
+
+
+
+
 }
 
 track_tab_widget::~track_tab_widget()
@@ -44,4 +51,38 @@ void track_tab_widget::setInstrument(QString instrument, int key) {
 
 int track_tab_widget::getInstrument() {
 	return this->instrument;
+}
+
+void track_tab_widget::setNextGraphicsNote(int altura) {
+	NotaRectItem *nota = new NotaRectItem();
+	int y_max = 5 * this->distance_btw_hlines - nota->getNotaHeight();
+	int pos_y = (altura * y_max) / 127;
+	delete nota;
+	nota = new NotaRectItem(this->x_next_note, y_max - pos_y);
+
+	this->scene->addItem(nota);
+	this->x_next_note += nota->getNotaWidth() + 5;
+}
+
+void track_tab_widget::SetClaveIntensidad(int min, int max) {
+	QPen pen;
+	pen.setWidth(5);
+	pen.setCapStyle(Qt::RoundCap);
+	this->scene->addLine(0, 0, 25, 5 * this->distance_btw_hlines, pen);
+	this->scene->addLine(50, 0, 25, 5 * this->distance_btw_hlines, pen);
+
+	delete this->minimum;
+	this->minimum = new QGraphicsTextItem(QString::number(min));
+	minimum->setPos(10, 5 * this->distance_btw_hlines + 10);
+	this->scene->addItem(minimum);
+
+	delete this->maximum;
+	this->maximum = new QGraphicsTextItem(QString::number(max));
+	maximum->setPos(10, -20);
+	this->scene->addItem(maximum);
+
+	if (this->x_next_note == 0) {
+		this->x_next_note = 15;
+	}
+	
 }

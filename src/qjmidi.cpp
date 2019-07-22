@@ -197,6 +197,7 @@ void QJmidi::addNote(Note note) {
 	this->ui->pte_output->appendPlainText(QString("Añadida nota en el tick: %0").arg(QString::number(last_tick)));
 	// Get a track_tab_widget pointer to the object inside the tab
 	//track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
+	current_tab->setNextGraphicsNote(note.velocity);
 
 	
 }

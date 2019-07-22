@@ -90,6 +90,9 @@
     <ClCompile Include="src\hexagram_scene.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\nota_rect_item.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -150,6 +153,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\hexagram_scene.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\nota_rect_item.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

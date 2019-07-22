@@ -14,18 +14,19 @@
    <string>QJmidi</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pb_generar_midi">
+   <widget class="QPushButton" name="pb_generar_midi_current_tab">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>570</y>
+      <x>130</x>
+      <y>500</y>
       <width>100</width>
       <height>90</height>
      </rect>
     </property>
     <property name="text">
      <string> Generar
-MIDI</string>
+MIDI
+tab actual</string>
     </property>
    </widget>
    <widget class="QTabWidget" name="tabWidget_tracks">
@@ -206,10 +207,10 @@ MIDI</string>
    <widget class="QPushButton" name="pb_add_track_tab">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>10</x>
       <y>500</y>
-      <width>50</width>
-      <height>45</height>
+      <width>101</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="toolTip">
@@ -266,6 +267,7 @@ MIDI</string>
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="resources.qrc"/>
   <include location="resources.qrc"/>
  </resources>
  <connections/>
