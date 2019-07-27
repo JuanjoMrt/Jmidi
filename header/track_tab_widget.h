@@ -2,8 +2,12 @@
 #define TRACK_TAB_WIDGET_H
 
 #include <QWidget>
+#include <QGraphicsLineItem>
+#include <QMessageBox>
+#include <vector>
 #include "header/hexagram_scene.h"
 #include "header/nota_rect_item.h"
+#include "header/note.h"
 
 namespace Ui {
 class track_tab_widget;
@@ -21,7 +25,7 @@ public:
 
 	//	Añade una nota a la representación visual, 
 	//	es decir, a la escena que representa la partitura
-	void setNextGraphicsNote(int altura);
+	NotaRectItem* setNextGraphicsNote(int altura);
 
 	//	Sets the velocity symbol
 	//	This method is also used to update it
@@ -30,6 +34,9 @@ public:
 	//	Este método tambien se usa para actualizar
 	//	dicha clave
 	void SetClaveIntensidad(int min, int max);
+
+	void setNextNote(Note note);
+
 
 private:
     Ui::track_tab_widget *ui;
@@ -46,6 +53,9 @@ private:
 	// Altura máxima y mínima de la clave
 	QGraphicsTextItem *minimum = new QGraphicsTextItem();
 	QGraphicsTextItem *maximum = new QGraphicsTextItem();
+
+	// Vector with all the notes in this score
+	std::vector <Note> tab_score;
 };
 
 #endif // TRACK_TAB_WIDGET_H

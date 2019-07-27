@@ -91,7 +91,7 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="src\nota_rect_item.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +156,7 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="header\nota_rect_item.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

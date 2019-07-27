@@ -15,6 +15,7 @@
 #include <QString>
 #include <Qpair>
 #include <QTextBrowser>
+#include <QDir>
 
 
 #include "lib/midifile/include/MidiFile.h"
@@ -43,8 +44,6 @@ public:
 	QString readFile(QString filename);
 
 private slots:
-    void on_pb_generar_midi_clicked();
-
     void on_pb_nota_clicked();
 
     void on_actionGenerate_Example_triggered();
@@ -52,6 +51,8 @@ private slots:
     void on_pb_rest_clicked();
 
     void on_pb_add_track_tab_clicked();
+
+    void on_pb_generar_midi_clicked();
 
 private:
     Ui::QJmidi *ui;

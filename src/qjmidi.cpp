@@ -87,10 +87,6 @@ QString QJmidi::readFile(QString filename) {
 	return mText;
 }
 
-void QJmidi::on_pb_generar_midi_clicked()
-{
-}
-
 void QJmidi::on_pb_nota_clicked()
 {
 	if (this->ui->tabWidget_tracks->count() <= 1) {
@@ -170,14 +166,34 @@ void QJmidi::on_pb_rest_clicked() {
 	else {
 
 		// Solo para test
-		Note nota;
-		this->addNote(nota);
+		track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(1));
+
 	}
 }
 
 void QJmidi::on_pb_add_track_tab_clicked() {
 	this->addTrackTab();
 }
+
+void QJmidi::on_pb_generar_midi_clicked() {
+
+	if (this->ui->tabWidget_tracks->count() <= 1) {
+		this->trackNotCreatedError();
+	}
+	else {
+	bool ok;
+	QString text = QInputDialog::getText(this, tr("QInputDialog::getText()"),
+		tr("User name:"), QLineEdit::Normal,
+		tr("File.mid"), &ok);
+
+	if (ok && !text.isEmpty())
+		midifile.write( text.toStdString() );
+
+	this->ui->pte_output->appendPlainText(QString("Creado el archivo %0").arg( text ));
+	}
+}
+
+
 
 void QJmidi::addNote(Note note) {
 	int index = this->ui->tabWidget_tracks->currentIndex();
@@ -197,7 +213,7 @@ void QJmidi::addNote(Note note) {
 	this->ui->pte_output->appendPlainText(QString("Añadida nota en el tick: %0").arg(QString::number(last_tick)));
 	// Get a track_tab_widget pointer to the object inside the tab
 	//track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
-	current_tab->setNextGraphicsNote(note.velocity);
+	current_tab->setNextNote(note);
 
 	
 }
