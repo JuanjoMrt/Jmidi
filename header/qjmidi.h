@@ -25,6 +25,7 @@
 #include "header/select_note_dialog.h"
 #include "header/note.h"
 #include "header/select_rest_dialog.h"
+#include "header/musical_symbol.h"
 
 using namespace std;
 

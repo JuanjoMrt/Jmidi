@@ -3,7 +3,7 @@
 class MusicalSymbol {
 public:
 	MusicalSymbol();
-	~MusicalSymbol();
+	virtual ~MusicalSymbol();
 
 private:
 

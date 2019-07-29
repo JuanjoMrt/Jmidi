@@ -8,6 +8,7 @@
 #include "header/hexagram_scene.h"
 #include "header/nota_rect_item.h"
 #include "header/note.h"
+#include "header/musical_symbol.h"
 
 namespace Ui {
 class track_tab_widget;
@@ -56,8 +57,8 @@ private:
 	QGraphicsTextItem *minimum = new QGraphicsTextItem();
 	QGraphicsTextItem *maximum = new QGraphicsTextItem();
 
-	// Vector with all the notes in this score
-	std::vector <Note> tab_score;
+	// Vector with all the symbols in this score
+	std::vector <MusicalSymbol> tab_score;
 };
 
 #endif // TRACK_TAB_WIDGET_H

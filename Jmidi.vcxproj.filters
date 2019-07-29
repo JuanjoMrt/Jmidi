@@ -96,6 +96,12 @@
     <ClCompile Include="src\select_rest_dialog.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\musical_symbol.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rest.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -166,6 +172,12 @@
     </ClInclude>
     <ClInclude Include="header\nota_rect_item.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\musical_symbol.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\rest.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

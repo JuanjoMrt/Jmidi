@@ -231,6 +231,11 @@ void QJmidi::addNote(Note note) {
 }
 
 void QJmidi::addRest(bool is_quarter_note) {
+	
+	if (is_quarter_note) {
+
+	}
+
 
 	int index = this->ui->tabWidget_tracks->currentIndex();
 	track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));

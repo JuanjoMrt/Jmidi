@@ -4,6 +4,7 @@
 #include <Qpair>
 #include <QMessageBox>
 #include "header/nota_rect_item.h"
+#include "header/musical_symbol.h"
 
 
 enum duration_symbols {
@@ -14,7 +15,7 @@ enum duration_symbols {
 };
 
 
-class Note {
+class Note : public MusicalSymbol{
 public:
 	Note();
 	~Note();
