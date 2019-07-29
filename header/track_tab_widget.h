@@ -37,6 +37,8 @@ public:
 
 	void setNextNote(Note note);
 
+	void setNextRest( bool is_quarter_note );
+
 
 private:
     Ui::track_tab_widget *ui;

@@ -204,6 +204,7 @@
     <ClCompile Include="src\qjmidi.cpp" />
     <ClCompile Include="src\select_instrument_dialog.cpp" />
     <ClCompile Include="src\select_note_dialog.cpp" />
+    <ClCompile Include="src\select_rest_dialog.cpp" />
     <ClCompile Include="src\sheet.cpp" />
     <ClCompile Include="src\track_tab_widget.cpp" />
   </ItemGroup>
@@ -215,6 +216,12 @@
     <ClInclude Include="header\hexagram_scene.h" />
     <ClInclude Include="header\nota_rect_item.h" />
     <ClInclude Include="header\note.h" />
+    <QtMoc Include="header\select_rest_dialog.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\debug;C:\VulkanSDK\1.0.51.0\include;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DEPRECATED_WARNINGS;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\release;C:\VulkanSDK\1.0.51.0\include;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</Define>
+    </QtMoc>
     <ClInclude Include="note.h" />
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <FileType>Document</FileType>
@@ -264,6 +271,10 @@
       <OutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\ui_%(Filename).h</OutputFile>
     </QtUic>
     <QtUic Include="ui\select_note_dialog.ui">
+      <OutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\ui_%(Filename).h</OutputFile>
+      <OutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\ui_%(Filename).h</OutputFile>
+    </QtUic>
+    <QtUic Include="ui\select_rest_dialog.ui">
       <OutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\ui_%(Filename).h</OutputFile>
       <OutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\ui_%(Filename).h</OutputFile>
     </QtUic>

@@ -3,8 +3,10 @@
         <file>icons/add-512px.png</file>
         <file>icons/quarter-note-512px.png</file>
         <file>icons/quarter-note-rest-512px.png</file>
+        <file>icons/caesura-512px.png</file>
+        <file>icons/quarter-note-rest-512px-cut.png</file>
     </qresource>
-    <qresource>
+    <qresource prefix="/">
         <file>resources/instruments.txt</file>
     </qresource>
 </RCC>

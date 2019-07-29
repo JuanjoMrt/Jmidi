@@ -24,6 +24,7 @@
 #include "header/select_instrument_dialog.h"
 #include "header/select_note_dialog.h"
 #include "header/note.h"
+#include "header/select_rest_dialog.h"
 
 using namespace std;
 
@@ -66,6 +67,9 @@ private:
 
 	// Adds a note to midifile and to the sheet
 	void addNote(Note note);
+	// Adds a rest to midifile and to the sheet
+	void addRest(bool is_quarter_note);
+
 	void trackNotCreatedError();
 	int getLastTick(int track);
 

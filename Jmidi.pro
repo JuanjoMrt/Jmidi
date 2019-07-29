@@ -28,15 +28,18 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         select_note_dialog.cpp \
+        select_rest_widget.cpp \
         src/*
 
 HEADERS += \
         header/* \
-        select_note_dialog.h
+        select_note_dialog.h \
+        select_rest_widget.h
 
 FORMS += \
         select_instrument_dialog.ui \
         select_note_dialog.ui \
+        select_rest_widget.ui \
         ui/*
 
 # Default rules for deployment.

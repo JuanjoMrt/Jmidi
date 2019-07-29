@@ -164,9 +164,21 @@ void QJmidi::on_pb_rest_clicked() {
 		this->trackNotCreatedError();
 	}
 	else {
+		
+		SelectRestDialog rest_dialog;
+		rest_dialog.setModal(true);
+		int result = rest_dialog.exec();
 
-		// Solo para test
-		track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(1));
+		if (result == QDialog::Accepted) {
+			this->addRest( rest_dialog.isQuarterRest() );
+		}
+		else {
+			QMessageBox message;
+			message.setText("Ha ocurrido un problema.");
+			message.exec();
+		}
+
+
 
 	}
 }
@@ -216,6 +228,14 @@ void QJmidi::addNote(Note note) {
 	current_tab->setNextNote(note);
 
 	
+}
+
+void QJmidi::addRest(bool is_quarter_note) {
+
+	int index = this->ui->tabWidget_tracks->currentIndex();
+	track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
+	current_tab->setNextRest(is_quarter_note);
+
 }
 
 void QJmidi::trackNotCreatedError() {

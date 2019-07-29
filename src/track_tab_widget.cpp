@@ -105,3 +105,35 @@ void track_tab_widget::setNextNote(Note note) {
 	this->tab_score.push_back(note);
 	
 }
+
+void track_tab_widget::setNextRest( bool is_quarter_note ) {
+	QImage image;
+
+	if (is_quarter_note) {
+		// Load the image and scale it
+		image = QImage(":/icons/icons/quarter-note-rest-512px-cut.png");
+		image = image.scaledToWidth(this->distance_btw_vlines / 4);
+	}
+	else {
+		image = QImage(":/icons/icons/caesura-512px.png");
+		image = image.scaledToWidth(this->distance_btw_vlines / 2);
+	}
+	
+
+	if (image.isNull()) {
+
+		QMessageBox msgBox;
+		msgBox.setText("Fallo al cargar la imagen");
+		msgBox.exec();
+
+	}
+	else {
+		QGraphicsPixmapItem *item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
+
+		// Colocamos la imagen en el centro del hexagrama
+		item->setX(this->x_next_note);
+		x_next_note += item->boundingRect().width() + 5;
+		item->setY((5 * this->distance_btw_hlines) / 2 - (item->boundingRect().height()) / 2);
+		this->scene->addItem(item);
+	}
+}

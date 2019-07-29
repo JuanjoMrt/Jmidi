@@ -93,6 +93,9 @@
     <ClCompile Include="src\nota_rect_item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\select_rest_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -115,6 +118,9 @@
     <QtMoc Include="header\select_instrument_dialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="header\select_rest_dialog.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\qjmidi.ui">
@@ -127,6 +133,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="ui\select_note_dialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ui\select_rest_dialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
