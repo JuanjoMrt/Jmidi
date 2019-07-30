@@ -56,6 +56,8 @@ private slots:
 
     void on_pb_generar_midi_clicked();
 
+    void on_pb_calderon_clicked();
+
 private:
     Ui::QJmidi *ui;
 	smf::MidiFile midifile;
@@ -69,7 +71,7 @@ private:
 	// Adds a note to midifile and to the sheet
 	void addNote(Note note);
 	// Adds a rest to midifile and to the sheet
-	void addRest(bool is_quarter_note);
+	void addRest(bool is_quarter_note, int duration);
 
 	void trackNotCreatedError();
 	int getLastTick(int track);

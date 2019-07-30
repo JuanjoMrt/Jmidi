@@ -170,7 +170,11 @@ void QJmidi::on_pb_rest_clicked() {
 		int result = rest_dialog.exec();
 
 		if (result == QDialog::Accepted) {
-			this->addRest( rest_dialog.isQuarterRest() );
+			this->addRest( rest_dialog.isQuarterRest(), rest_dialog.getDuration() );
+
+			// Output the result
+			QString rest_type = rest_dialog.isQuarterRest() ? QString("o silencio de negra") : QString("a cesura");
+			this->ui->pte_output->appendPlainText( QString("Añadid%0 correctamente.").arg(rest_type) );
 		}
 		else {
 			QMessageBox message;
@@ -205,7 +209,10 @@ void QJmidi::on_pb_generar_midi_clicked() {
 	}
 }
 
+void QJmidi::on_pb_calderon_clicked() {
 
+
+}
 
 void QJmidi::addNote(Note note) {
 	int index = this->ui->tabWidget_tracks->currentIndex();
@@ -230,16 +237,20 @@ void QJmidi::addNote(Note note) {
 	
 }
 
-void QJmidi::addRest(bool is_quarter_note) {
-	
-	if (is_quarter_note) {
-
-	}
-
-
+void QJmidi::addRest(bool is_quarter_note, int duration) {
 	int index = this->ui->tabWidget_tracks->currentIndex();
+	int last_tick = this->getLastTick(index - 1);
+
+	// Add the rest to the midifile
+	midifile.addNoteOn(index - 1, last_tick, this->channel, 0, 0);
+	int duration_ticks = 1 * midifile.getTPQ();
+	if (duration > 1)
+		duration_ticks = midifile.getTPQ() * duration;
+	midifile.addNoteOff(index - 1, last_tick + duration_ticks, this->channel, 0);
+
+	// Store the rest in the current tab
 	track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
-	current_tab->setNextRest(is_quarter_note);
+	current_tab->setNextRest(is_quarter_note, duration);
 
 }
 

@@ -5,6 +5,7 @@
         <file>icons/quarter-note-rest-512px.png</file>
         <file>icons/caesura-512px.png</file>
         <file>icons/quarter-note-rest-512px-cut.png</file>
+        <file>icons/fermata-512px.png</file>
     </qresource>
     <qresource prefix="/">
         <file>resources/instruments.txt</file>

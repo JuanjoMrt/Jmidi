@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>433</width>
-    <height>271</height>
+    <width>411</width>
+    <height>282</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,7 +48,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resources.qrc">
            <normaloff>:/icons/icons/quarter-note-rest-512px-cut.png</normaloff>:/icons/icons/quarter-note-rest-512px-cut.png</iconset>
          </property>
          <property name="iconSize">
@@ -111,7 +111,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resources.qrc">
            <normaloff>:/icons/icons/caesura-512px.png</normaloff>:/icons/icons/caesura-512px.png</iconset>
          </property>
          <property name="iconSize">
@@ -133,6 +133,24 @@
     </layout>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Duration:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="sb_rest_duration">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -144,7 +162,10 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+  <include location="resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>
@@ -175,6 +196,70 @@
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pb_caesura</sender>
+   <signal>clicked()</signal>
+   <receiver>sb_rest_duration</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>320</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>372</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pb_quarter_note</sender>
+   <signal>clicked()</signal>
+   <receiver>sb_rest_duration</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>96</x>
+     <y>162</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>237</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pb_caesura</sender>
+   <signal>clicked()</signal>
+   <receiver>label</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>283</x>
+     <y>117</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>65</x>
+     <y>227</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pb_quarter_note</sender>
+   <signal>clicked()</signal>
+   <receiver>label</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>118</x>
+     <y>68</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>159</x>
+     <y>223</y>
     </hint>
    </hints>
   </connection>

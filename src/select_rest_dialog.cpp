@@ -17,10 +17,18 @@ bool SelectRestDialog::isQuarterRest() {
 	return this->quarter_rest;
 }
 
+int SelectRestDialog::getDuration() {
+	return this->duration;
+}
+
 
 void SelectRestDialog::on_buttonBox_accepted()
 {
 	if (this->ui->pb_caesura->isChecked()) {
 		this->quarter_rest = false;
+		this->duration = -1;
+	}
+	else {
+		this->duration = this->ui->sb_rest_duration->value();
 	}
 }

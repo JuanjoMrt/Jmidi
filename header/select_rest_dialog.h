@@ -15,6 +15,7 @@ public:
     explicit SelectRestDialog(QWidget *parent = nullptr);
     ~SelectRestDialog();
 	bool isQuarterRest();
+	int getDuration();
 
 private slots:
 
@@ -24,6 +25,7 @@ private slots:
 private:
     Ui::SelectRestDialog *ui;
 	bool quarter_rest = true;
+	int duration;
 };
 
 #endif // SELECT_REST_DIALOG_H

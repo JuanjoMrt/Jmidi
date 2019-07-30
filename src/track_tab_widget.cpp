@@ -106,7 +106,7 @@ void track_tab_widget::setNextNote(Note note) {
 	
 }
 
-void track_tab_widget::setNextRest( bool is_quarter_note ) {
+void track_tab_widget::setNextRest( bool is_quarter_note, int duration ) {
 	QImage image;
 
 	if (is_quarter_note) {
@@ -128,12 +128,27 @@ void track_tab_widget::setNextRest( bool is_quarter_note ) {
 
 	}
 	else {
+		Rest rest;
 		QGraphicsPixmapItem *item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
 
 		// Colocamos la imagen en el centro del hexagrama
 		item->setX(this->x_next_note);
-		x_next_note += item->boundingRect().width() + 5;
 		item->setY((5 * this->distance_btw_hlines) / 2 - (item->boundingRect().height()) / 2);
 		this->scene->addItem(item);
+
+		if (duration > 1) {
+			QGraphicsTextItem* circa = new QGraphicsTextItem(QString("ca.%0").arg(QString::number(duration)));
+			circa->setPos(this->x_next_note, -20);
+			this->scene->addItem(circa);
+			rest.circa = circa;
+		}
+
+		// Actualizamos la posicion del siguiente simbolo
+		x_next_note += item->boundingRect().width() + 5;
+
+		rest.is_quarter_note = is_quarter_note;
+		rest.rest_image = item;
+		rest.duration = duration;
+		this->tab_score.push_back(rest);
 	}
 }

@@ -9,6 +9,7 @@
 #include "header/nota_rect_item.h"
 #include "header/note.h"
 #include "header/musical_symbol.h"
+#include "header/rest.h"
 
 namespace Ui {
 class track_tab_widget;
@@ -38,7 +39,7 @@ public:
 
 	void setNextNote(Note note);
 
-	void setNextRest( bool is_quarter_note );
+	void setNextRest( bool is_quarter_note, int duration );
 
 
 private:
