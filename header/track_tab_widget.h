@@ -41,6 +41,9 @@ public:
 
 	void setNextRest( bool is_quarter_note, int duration );
 
+	// Returns the number of symbols in the score
+	int scoreSize();
+
 
 private:
     Ui::track_tab_widget *ui;

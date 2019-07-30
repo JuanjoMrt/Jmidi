@@ -102,6 +102,9 @@
     <ClCompile Include="src\rest.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\calderondialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -127,6 +130,9 @@
     <QtMoc Include="header\select_rest_dialog.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
+    <QtMoc Include="header\calderondialog.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\qjmidi.ui">
@@ -142,6 +148,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="ui\select_rest_dialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ui\calderondialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

@@ -152,3 +152,7 @@ void track_tab_widget::setNextRest( bool is_quarter_note, int duration ) {
 		this->tab_score.push_back(rest);
 	}
 }
+
+int track_tab_widget::scoreSize() {
+	return this->tab_score.size();
+}

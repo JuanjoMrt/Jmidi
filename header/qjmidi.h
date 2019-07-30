@@ -26,6 +26,7 @@
 #include "header/note.h"
 #include "header/select_rest_dialog.h"
 #include "header/musical_symbol.h"
+#include "header/calderondialog.h"
 
 using namespace std;
 

@@ -211,8 +211,36 @@ void QJmidi::on_pb_generar_midi_clicked() {
 
 void QJmidi::on_pb_calderon_clicked() {
 
+	if (this->ui->tabWidget_tracks->count() <= 1) {
+		this->trackNotCreatedError();
+	}
+	else {
+		int index = this->ui->tabWidget_tracks->currentIndex();
+		track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
+		
+		if (current_tab->scoreSize() < 1) {
+			QMessageBox message;
+			message.setText("No hay notas en la partitura.");
+			message.exec();
+		}
+		else {
+
+			CalderonDialog calderon_dialog;
+			calderon_dialog.setModal(true);
+			calderon_dialog.setMaximumSlider(current_tab->scoreSize());
+			int result = calderon_dialog.exec();
+
+			if (result == QDialog::Accepted) {
+				int inicio = calderon_dialog.getInicio();
+				int fin = calderon_dialog.getFin();
+				int num_rep = calderon_dialog.GetNumRepeticiones();
+			}
+		}
+	}
 
 }
+
+
 
 void QJmidi::addNote(Note note) {
 	int index = this->ui->tabWidget_tracks->currentIndex();
