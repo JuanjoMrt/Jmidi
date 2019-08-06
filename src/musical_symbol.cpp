@@ -3,3 +3,7 @@
 MusicalSymbol::MusicalSymbol() {}
 
 MusicalSymbol::~MusicalSymbol() {}
+
+bool MusicalSymbol::isCalderon() {
+	return false;
+}

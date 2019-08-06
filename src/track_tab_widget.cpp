@@ -153,6 +153,18 @@ void track_tab_widget::setNextRest( bool is_quarter_note, int duration ) {
 	}
 }
 
+int track_tab_widget::getLastCalderon() {
+	bool found = false;
+	int index = 0;
+	for (int i = tab_score.size() - 1; i >= 0 && !found; i--) {
+		if (tab_score[i].isCalderon()) {
+			index = i;
+			found = true;
+		}
+	}
+	return index;
+}
+
 int track_tab_widget::scoreSize() {
 	return this->tab_score.size();
 }

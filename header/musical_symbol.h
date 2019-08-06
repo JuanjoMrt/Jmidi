@@ -5,6 +5,12 @@ public:
 	MusicalSymbol();
 	virtual ~MusicalSymbol();
 
-private:
+	// Returns the x of the graphic item
+	// this will be override by subtypes
+	int getX();
 
+	bool isCalderon();
+
+private:
+	
 };

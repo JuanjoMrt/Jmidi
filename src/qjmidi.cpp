@@ -228,12 +228,15 @@ void QJmidi::on_pb_calderon_clicked() {
 			CalderonDialog calderon_dialog;
 			calderon_dialog.setModal(true);
 			calderon_dialog.setMaximumSlider(current_tab->scoreSize());
+			calderon_dialog.setMinimumSlider( current_tab->getLastCalderon());
 			int result = calderon_dialog.exec();
 
 			if (result == QDialog::Accepted) {
 				int inicio = calderon_dialog.getInicio();
 				int fin = calderon_dialog.getFin();
 				int num_rep = calderon_dialog.GetNumRepeticiones();
+				Calderon calderon(inicio,fin,num_rep);
+				this->addCalderon(calderon);
 			}
 		}
 	}
@@ -279,6 +282,64 @@ void QJmidi::addRest(bool is_quarter_note, int duration) {
 	// Store the rest in the current tab
 	track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
 	current_tab->setNextRest(is_quarter_note, duration);
+
+}
+
+void QJmidi::addCalderon(Calderon calderon) {
+	int index = this->ui->tabWidget_tracks->currentIndex();
+	//track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
+
+	
+
+	// Count the number of noteOn events
+	int n_note_on = 0;
+	// This will be the initial tick inside our calderon
+	int relative_zero_tick = -1;
+	// Get the number of events in total
+	int event_count = midifile.getEventCount(index - 1);
+
+	this->ui->pte_output->appendPlainText(QString("Número de events: %0").arg(QString::number(midifile.getEventCount(0))));
+	//Add the notes inside the calderon zone in the midifile
+
+
+	int last_tick = this->getLastTick(index - 1);
+	int i = 0;
+	for(int j = 0; j < calderon.num_rep; j++ ){
+		if (j != 0) {
+			relative_zero_tick = last_tick;
+			last_tick = this->getLastTick(index - 1);
+			event_count = midifile.getEventCount(index - 1);
+		}
+
+
+		for (; i < event_count; i++) {
+			smf::MidiEvent event = midifile.getEvent(index - 1, i);
+			int tick = event.tick;
+
+			if (event.isNoteOn() || event.isNoteOff() ) {
+				if (calderon.begin_index <= n_note_on) {
+					if(relative_zero_tick != -1) {
+						event.tick = last_tick +(event.tick - relative_zero_tick);
+						midifile.addEvent(event);
+					}
+
+					// The first event will be a noteOn event
+					if (relative_zero_tick == -1 && event.isNoteOn()) {
+						relative_zero_tick = event.tick;
+						event.tick = last_tick;
+						midifile.addEvent(event);
+
+					}
+
+				
+				}
+				if(event.isNoteOn())
+					n_note_on++;
+			}
+		}
+	}
+
+	this->ui->pte_output->appendPlainText( QString("Número de events: %0").arg(QString::number( midifile.getEventCount(0) )));
 
 }
 

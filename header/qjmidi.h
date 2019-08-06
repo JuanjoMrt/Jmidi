@@ -19,6 +19,7 @@
 
 
 #include "lib/midifile/include/MidiFile.h"
+#include "lib/midifile/include/MidiEventList.h"
 #include "header/sheet.h"
 #include "header/track_tab_widget.h"
 #include "header/select_instrument_dialog.h"
@@ -27,6 +28,7 @@
 #include "header/select_rest_dialog.h"
 #include "header/musical_symbol.h"
 #include "header/calderondialog.h"
+#include "header/calderon.h"
 
 using namespace std;
 
@@ -71,8 +73,12 @@ private:
 
 	// Adds a note to midifile and to the sheet
 	void addNote(Note note);
+
 	// Adds a rest to midifile and to the sheet
 	void addRest(bool is_quarter_note, int duration);
+
+	//Adds a Fermata or Calderon to the sheet
+	void addCalderon(Calderon calderon);
 
 	void trackNotCreatedError();
 	int getLastTick(int track);
