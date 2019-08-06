@@ -15,6 +15,7 @@ public:
     explicit CalderonDialog(QWidget *parent = nullptr);
     ~CalderonDialog();
 	void setMaximumSlider(int max);
+	void setMinimumSlider(int min);
 	int getInicio();
 	int getFin();
 	int GetNumRepeticiones();

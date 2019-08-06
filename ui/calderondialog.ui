@@ -75,7 +75,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="sb_fin_calderon"/>
+        <widget class="QSpinBox" name="sb_fin_calderon">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -152,6 +156,9 @@
        </item>
        <item>
         <widget class="QSlider" name="slider_fin_calderon">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="maximum">
           <number>20</number>
          </property>
@@ -188,7 +195,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="sb_num_rep"/>
+      <widget class="QSpinBox" name="sb_num_rep">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

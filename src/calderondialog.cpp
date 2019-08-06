@@ -18,6 +18,16 @@ void CalderonDialog::setMaximumSlider(int max) {
 	this->ui->slider_inicio_calderon->setMaximum(max);
 	this->ui->label_fin_maximum->setText( QString::number(max));
 	this->ui->label_inicio_maximum->setText(QString::number(max));
+	this->ui->slider_fin_calderon->setValue(max);
+
+}
+
+void CalderonDialog::setMinimumSlider(int min) {
+	this->ui->slider_inicio_calderon->setMinimum(min);
+	this->ui->slider_fin_calderon->setMinimum(min);
+
+	this->ui->label_fin_minimum->setText(QString::number(min));
+	this->ui->label_inicio_minimum->setText(QString::number(min));
 }
 
 int CalderonDialog::getInicio() {
