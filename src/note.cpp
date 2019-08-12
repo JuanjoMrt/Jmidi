@@ -6,6 +6,14 @@ Note::Note() {
 	
 }
 
+Note::Note(const Note & note) {
+	this->velocity = note.velocity;
+	this->duration_symbol = note.duration_symbol;
+	this->rect_item = note.rect_item;
+	this->note_graphic_symbol = note.note_graphic_symbol;
+	this->note_graphic_symbol_2 = note.note_graphic_symbol_2;
+}
+
 
 Note::~Note() {}
 
@@ -62,5 +70,10 @@ void Note::setNoteGraphicsItem(NotaRectItem* nri) {
 	}
 
 	this->note_graphic_symbol->setPen(pen);
+	
 
+}
+
+qreal Note::getX() {
+	return this->rect_item->getNotaPos().first;
 }

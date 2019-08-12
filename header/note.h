@@ -18,12 +18,15 @@ enum duration_symbols {
 class Note : public MusicalSymbol{
 public:
 	Note();
+	Note(const Note& note);
 	~Note();
 
 	// Return the duration of the note in ticks
 	int CalculateDurationTicks(int tpq);
 
 	void setNoteGraphicsItem(NotaRectItem* nri);
+
+	qreal getX() override;
 
 	// This will be private in a future update
 	// and getter and setter methods

@@ -287,7 +287,7 @@ void QJmidi::addRest(bool is_quarter_note, int duration) {
 
 void QJmidi::addCalderon(Calderon calderon) {
 	int index = this->ui->tabWidget_tracks->currentIndex();
-	//track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
+	track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
 
 	
 
@@ -338,6 +338,8 @@ void QJmidi::addCalderon(Calderon calderon) {
 			}
 		}
 	}
+
+	current_tab->setNextCalderon(calderon);
 
 	this->ui->pte_output->appendPlainText( QString("Número de events: %0").arg(QString::number( midifile.getEventCount(0) )));
 

@@ -4,7 +4,7 @@ NotaRectItem::NotaRectItem(QGraphicsItem *parent) {
 	this->setParentItem(parent);
 }
 
-NotaRectItem::NotaRectItem(int x, int y) {
+NotaRectItem::NotaRectItem(qreal x, qreal y) {
 	// Establecemos el tamaño
 	this->setRect( QRectF(x, y, nota_width, nota_height) );
 	this->x = x;
@@ -22,6 +22,6 @@ int NotaRectItem::getNotaHeight() {
 	return this->nota_height;
 }
 
-QPair<int, int> NotaRectItem::getNotaPos() {
-	return QPair<int, int>(this->x, this->y);
+QPair<qreal, qreal> NotaRectItem::getNotaPos() {
+	return QPair<qreal, qreal>(this->x, this->y);
 }

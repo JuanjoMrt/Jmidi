@@ -11,6 +11,9 @@ public:
 	~Rest();
 	
 	QGraphicsPixmapItem *rest_image;
+	qreal getX() override;
+
+
 	bool is_quarter_note;
 	int duration;
 	QGraphicsTextItem *circa;

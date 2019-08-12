@@ -10,6 +10,7 @@
 #include "header/note.h"
 #include "header/musical_symbol.h"
 #include "header/rest.h"
+#include "header/calderon.h"
 
 namespace Ui {
 class track_tab_widget;
@@ -41,6 +42,8 @@ public:
 
 	void setNextRest( bool is_quarter_note, int duration );
 
+	void setNextCalderon(Calderon calderon);
+
 	// Returns the index of the last Fermata (Calderon)
 	int getLastCalderon();
 
@@ -65,7 +68,7 @@ private:
 	QGraphicsTextItem *maximum = new QGraphicsTextItem();
 
 	// Vector with all the symbols in this score
-	std::vector <MusicalSymbol> tab_score;
+	std::vector < std::unique_ptr< MusicalSymbol > > tab_score;
 };
 
 #endif // TRACK_TAB_WIDGET_H

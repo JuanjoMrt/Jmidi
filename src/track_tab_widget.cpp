@@ -102,7 +102,12 @@ void track_tab_widget::setNextNote(Note note) {
 	}
 
 	// Add the note to vector of notes
-	this->tab_score.push_back(note);
+	//this->tab_score.emplace_back(&note);
+	this->tab_score.emplace_back( new Note(note) );
+
+	//QMessageBox msgBox;
+	//msgBox.setText(QString( "Pos x= %0" ).arg( QString::number( rect_item->getNotaPos().first ) ));
+	//msgBox.exec();
 	
 }
 
@@ -149,15 +154,49 @@ void track_tab_widget::setNextRest( bool is_quarter_note, int duration ) {
 		rest.is_quarter_note = is_quarter_note;
 		rest.rest_image = item;
 		rest.duration = duration;
-		this->tab_score.push_back(rest);
+		//this->tab_score.emplace_back(&rest);
+		this->tab_score.emplace_back(new Rest(rest) );
 	}
+}
+
+void track_tab_widget::setNextCalderon(Calderon calderon) {
+	qreal pos_x_begin = this->tab_score[calderon.begin_index]->getX() ;
+	/*qreal pos_x_begin = ms.getX();*/
+	qreal pos_x_end = this->x_next_note;
+
+	QPen pen;
+	pen.setWidth(3);
+	pen.setCapStyle(Qt::RoundCap);
+	this->scene->addLine(pos_x_begin,-10,pos_x_end,-10,pen);
+
+
+	QImage image;
+	image = QImage(":/icons/icons/fermata-512px.png");
+	if (image.isNull()) {
+		
+		QMessageBox msgBox;
+		msgBox.setText("Fallo al cargar la imagen");
+		msgBox.exec();
+
+	}
+	else {
+		image = image.scaledToWidth(this->distance_btw_vlines / 4); 
+		QGraphicsPixmapItem *item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
+		// Set the image in the middle
+		item->setX(pos_x_begin + ((pos_x_end - pos_x_begin)/2 - item->boundingRect().width()/2 ) );
+		item->setY(-35);
+		this->scene->addItem(item);
+	}
+	
+	//TODO:Add the calderon to the score vector
+
 }
 
 int track_tab_widget::getLastCalderon() {
 	bool found = false;
 	int index = 0;
 	for (int i = tab_score.size() - 1; i >= 0 && !found; i--) {
-		if (tab_score[i].isCalderon()) {
+		if (tab_score[i]->isCalderon()) {
 			index = i;
 			found = true;
 		}

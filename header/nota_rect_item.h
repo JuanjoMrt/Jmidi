@@ -11,20 +11,20 @@
 class NotaRectItem : public QGraphicsRectItem {
 public:
 	NotaRectItem(QGraphicsItem *parent = 0);
-	NotaRectItem(int x, int y);
+	NotaRectItem(qreal x, qreal y);
 
 
 
 	int getNotaWidth();
 	int getNotaHeight();
-	QPair<int,int> getNotaPos();
+	QPair<qreal,qreal> getNotaPos();
 
 private:
 	int nota_width = 10;
 	int nota_height = 10;
 
 	// Position
-	int x,y;
+	qreal x,y;
 };
 
 #endif // NOTA_RECT_ITEM_H

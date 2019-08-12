@@ -1,4 +1,5 @@
 #pragma once
+#include <QtGlobal>
 
 class MusicalSymbol {
 public:
@@ -7,10 +8,11 @@ public:
 
 	// Returns the x of the graphic item
 	// this will be override by subtypes
-	int getX();
+	virtual qreal getX();
+
 
 	bool isCalderon();
 
 private:
-	
+	//qreal x,y;
 };
