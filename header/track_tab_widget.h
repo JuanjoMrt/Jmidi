@@ -47,6 +47,8 @@ public:
 	// Returns the index of the last Fermata (Calderon)
 	int getLastCalderon();
 
+	int getNumberNotes(int index);
+
 	// Returns the number of symbols in the score
 	int scoreSize();
 

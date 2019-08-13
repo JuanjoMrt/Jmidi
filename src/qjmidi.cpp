@@ -299,9 +299,10 @@ void QJmidi::addCalderon(Calderon calderon) {
 	int event_count = midifile.getEventCount(index - 1);
 
 	this->ui->pte_output->appendPlainText(QString("Número de events: %0").arg(QString::number(midifile.getEventCount(0))));
+	
+	int index_begin = current_tab->getNumberNotes(calderon.begin_index) - 1 ;
+
 	//Add the notes inside the calderon zone in the midifile
-
-
 	int last_tick = this->getLastTick(index - 1);
 	int i = 0;
 	for(int j = 0; j < calderon.num_rep; j++ ){
@@ -317,7 +318,7 @@ void QJmidi::addCalderon(Calderon calderon) {
 			int tick = event.tick;
 
 			if (event.isNoteOn() || event.isNoteOff() ) {
-				if (calderon.begin_index <= n_note_on) {
+				if (index_begin <= n_note_on) {
 					if(relative_zero_tick != -1) {
 						event.tick = last_tick +(event.tick - relative_zero_tick);
 						midifile.addEvent(event);

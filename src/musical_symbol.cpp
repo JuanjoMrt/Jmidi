@@ -12,3 +12,7 @@ qreal MusicalSymbol::getX() {
 bool MusicalSymbol::isCalderon() {
 	return false;
 }
+
+int MusicalSymbol::countNotesInside() {
+	return 1;
+}

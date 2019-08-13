@@ -12,6 +12,7 @@ public:
 	
 	QGraphicsPixmapItem *rest_image;
 	qreal getX() override;
+	int countNotesInside() override;
 
 
 	bool is_quarter_note;

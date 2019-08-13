@@ -189,7 +189,7 @@ void track_tab_widget::setNextCalderon(Calderon calderon) {
 	}
 	
 	//TODO:Add the calderon to the score vector
-
+	this->tab_score.emplace_back(new Calderon(calderon));
 }
 
 int track_tab_widget::getLastCalderon() {
@@ -197,11 +197,21 @@ int track_tab_widget::getLastCalderon() {
 	int index = 0;
 	for (int i = tab_score.size() - 1; i >= 0 && !found; i--) {
 		if (tab_score[i]->isCalderon()) {
-			index = i;
+			index = i + 1;
 			found = true;
 		}
 	}
 	return index;
+}
+
+int track_tab_widget::getNumberNotes(int index) {
+	int number_repeated_notes = 0;
+
+	// Comprobar comparación
+	for (int i = 0; i <= index; i++) {
+		number_repeated_notes += tab_score[i]->countNotesInside();		
+	}
+	return number_repeated_notes;
 }
 
 int track_tab_widget::scoreSize() {

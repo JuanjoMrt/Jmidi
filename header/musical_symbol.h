@@ -11,7 +11,8 @@ public:
 	virtual qreal getX();
 
 
-	bool isCalderon();
+	virtual bool isCalderon();
+	virtual int countNotesInside();
 
 private:
 	//qreal x,y;
