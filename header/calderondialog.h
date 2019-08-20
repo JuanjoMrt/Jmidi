@@ -19,11 +19,16 @@ public:
 	int getInicio();
 	int getFin();
 	int GetNumRepeticiones();
+	int getCa();
+	bool is_repetition = false;
 
 private slots:
-    void on_slider_inicio_calderon_valueChanged(int value);
 
-    void on_slider_fin_calderon_valueChanged(int value);
+    void on_pb_calderon_clicked();
+
+    void on_pb_repetition_clicked();
+
+    void on_slider_inicio_calderon_sliderMoved(int position);
 
 private:
     Ui::CalderonDialog *ui;

@@ -42,7 +42,7 @@ public:
 
 	void setNextRest( bool is_quarter_note, int duration );
 
-	void setNextCalderon(Calderon calderon);
+	void setNextCalderon(Calderon& calderon);
 
 	// Returns the index of the last Fermata (Calderon)
 	int getLastCalderon();

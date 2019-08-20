@@ -232,11 +232,19 @@ void QJmidi::on_pb_calderon_clicked() {
 			int result = calderon_dialog.exec();
 
 			if (result == QDialog::Accepted) {
+
 				int inicio = calderon_dialog.getInicio();
 				int fin = calderon_dialog.getFin();
 				int num_rep = calderon_dialog.GetNumRepeticiones();
-				Calderon calderon(inicio,fin,num_rep);
+				bool is_repetition = calderon_dialog.is_repetition;
+				Calderon calderon(inicio, fin, num_rep, is_repetition);
+				//if(is_repetition){
+				//	Calderon ca(inicio,fin,calderon_dialog.getCa(),is_repetition);
+				//	calderon = ca;
+				//}
+				
 				this->addCalderon(calderon);
+
 			}
 		}
 	}
@@ -289,8 +297,6 @@ void QJmidi::addCalderon(Calderon calderon) {
 	int index = this->ui->tabWidget_tracks->currentIndex();
 	track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
 
-	
-
 	// Count the number of noteOn events
 	int n_note_on = 0;
 	// This will be the initial tick inside our calderon
@@ -339,9 +345,7 @@ void QJmidi::addCalderon(Calderon calderon) {
 			}
 		}
 	}
-
 	current_tab->setNextCalderon(calderon);
-
 	this->ui->pte_output->appendPlainText( QString("Número de events: %0").arg(QString::number( midifile.getEventCount(0) )));
 
 }

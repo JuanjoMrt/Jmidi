@@ -159,7 +159,9 @@ void track_tab_widget::setNextRest( bool is_quarter_note, int duration ) {
 	}
 }
 
-void track_tab_widget::setNextCalderon(Calderon calderon) {
+void track_tab_widget::setNextCalderon(Calderon& calderon) {
+
+	bool a = calderon.isRepetition();
 	qreal pos_x_begin = this->tab_score[calderon.begin_index]->getX() ;
 	/*qreal pos_x_begin = ms.getX();*/
 	qreal pos_x_end = this->x_next_note;
@@ -168,27 +170,60 @@ void track_tab_widget::setNextCalderon(Calderon calderon) {
 	pen.setWidth(3);
 	pen.setCapStyle(Qt::RoundCap);
 	this->scene->addLine(pos_x_begin,-10,pos_x_end,-10,pen);
-
-
 	QImage image;
-	image = QImage(":/icons/icons/fermata-512px.png");
-	if (image.isNull()) {
-		
-		QMessageBox msgBox;
-		msgBox.setText("Fallo al cargar la imagen");
-		msgBox.exec();
+	if (!calderon.isRepetition()) {
+		image = QImage(":/icons/icons/fermata-512px.png");
+		if (image.isNull()) {
 
+			QMessageBox msgBox;
+			msgBox.setText("Fallo al cargar la imagen");
+			msgBox.exec();
+
+		}
+		else {
+			image = image.scaledToWidth(this->distance_btw_vlines / 4);
+			QGraphicsPixmapItem *item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
+			// Set the image in the middle
+			item->setX(pos_x_begin + ((pos_x_end - pos_x_begin) / 2 - item->boundingRect().width() / 2));
+			item->setY(-35);
+			this->scene->addItem(item);
+			calderon.calderon_image = item;
+		}
 	}
 	else {
-		image = image.scaledToWidth(this->distance_btw_vlines / 4); 
-		QGraphicsPixmapItem *item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
-		// Set the image in the middle
-		item->setX(pos_x_begin + ((pos_x_end - pos_x_begin)/2 - item->boundingRect().width()/2 ) );
-		item->setY(-35);
-		this->scene->addItem(item);
+		image = QImage(":/icons/icons/repeat-sign-start-512px.png");
+		QImage image2 = QImage(":/icons/icons/repeat-sign-end-512px.png");;
+		if (image.isNull() || image2.isNull()) {
+
+			QMessageBox msgBox;
+			msgBox.setText("Fallo al cargar la imagen");
+			msgBox.exec();
+
+		}
+		else {
+			image = image.scaledToWidth(this->distance_btw_vlines / 4);
+			image2 = image2.scaledToWidth(this->distance_btw_vlines / 4);
+
+			QGraphicsPixmapItem *item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
+			QGraphicsPixmapItem *item2 = new QGraphicsPixmapItem(QPixmap::fromImage(image2));
+			// Set at the start of the repetition
+			item->setX(pos_x_begin);
+			item->setY(-35);
+			//Set at the end
+			item2->setX(pos_x_end - item2->boundingRect().width());
+			item2->setY(-35);
+
+			this->scene->addItem(item);
+			this->scene->addItem(item2);
+			calderon.calderon_image = item;
+
+
+		}
+
 	}
+
 	
-	//TODO:Add the calderon to the score vector
+
 	this->tab_score.emplace_back(new Calderon(calderon));
 }
 

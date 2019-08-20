@@ -6,6 +6,9 @@
         <file>icons/caesura-512px.png</file>
         <file>icons/quarter-note-rest-512px-cut.png</file>
         <file>icons/fermata-512px.png</file>
+        <file>icons/repeat-sign-end-512px.png</file>
+        <file>icons/repeat-sign-start-512px.png</file>
+        <file>icons/repeat-sign-start-and-end-512px.png</file>
     </qresource>
     <qresource prefix="/">
         <file>resources/instruments.txt</file>

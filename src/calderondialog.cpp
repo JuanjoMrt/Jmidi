@@ -14,43 +14,54 @@ CalderonDialog::~CalderonDialog()
 }
 
 void CalderonDialog::setMaximumSlider(int max) {
-	this->ui->slider_fin_calderon->setMaximum(max);
 	this->ui->slider_inicio_calderon->setMaximum(max);
-	this->ui->label_fin_maximum->setText( QString::number(max));
-	this->ui->label_inicio_maximum->setText(QString::number(max));
-	this->ui->slider_fin_calderon->setValue(max);
-
+	this->ui->label_inicio_maximum->setText( QString("Inicial\n  %0").arg(QString::number(max)));
 }
 
 void CalderonDialog::setMinimumSlider(int min) {
 	this->ui->slider_inicio_calderon->setMinimum(min);
-	this->ui->slider_fin_calderon->setMinimum(min);
-
-	this->ui->label_fin_minimum->setText(QString::number(min));
-	this->ui->label_inicio_minimum->setText(QString::number(min));
+	this->ui->label_inicio_minimum->setText(QString("Final\n  %0").arg(QString::number(min)));
+	int num_note_rep = this->ui->slider_inicio_calderon->maximum() - min;
+	this->ui->label_notes_to_repeat->setText(QString::fromUtf8("Se repetiran las ultimas %0 notas").arg(QString::number(num_note_rep)));
 }
 
 int CalderonDialog::getInicio() {
-	return this->ui->sb_inicio_calderon->value();
+	return this->ui->slider_inicio_calderon->value();
 }
 
 int CalderonDialog::getFin() {
-	return this->ui->sb_fin_calderon->value();
+	return this->ui->slider_inicio_calderon->maximum();
 }
 
 int CalderonDialog::GetNumRepeticiones() {
-	return this->ui->sb_num_rep->value();
+	int num_rep = 1;
+	if (is_repetition) {
+		num_rep = this->ui->sb_num_rep->value();
+	}
+	return num_rep;
 }
 
-void CalderonDialog::on_slider_inicio_calderon_valueChanged(int value)
-{
-	if( this->ui->slider_fin_calderon->value() < value )
-		this->ui->slider_fin_calderon->setValue(value);
+int CalderonDialog::getCa() {
+	return this->ui->sb_ca->value();
 }
 
-void CalderonDialog::on_slider_fin_calderon_valueChanged(int value)
+void CalderonDialog::on_pb_calderon_clicked() {
+	this->ui->sb_num_rep->setEnabled(false);
+	this->ui->sb_ca->setEnabled(true);
+	this->is_repetition = false;
+}
+
+
+void CalderonDialog::on_pb_repetition_clicked()
 {
-	int min = this->ui->slider_inicio_calderon->value();
-	if(value < min)
-		this->ui->slider_fin_calderon->setValue(min);
+	this->ui->sb_num_rep->setEnabled(true);
+	this->ui->sb_ca->setEnabled(false);
+	this->is_repetition = true;
+}
+
+void CalderonDialog::on_slider_inicio_calderon_sliderMoved(int position)
+{
+	int notes_repeat = this->ui->slider_inicio_calderon->maximum() - position;
+
+	this->ui->label_notes_to_repeat->setText(QString::fromUtf8("Se repetiran las ultimas %0 notas").arg(QString::number(notes_repeat)));
 }
