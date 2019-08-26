@@ -101,7 +101,7 @@ MIDI</string>
        </property>
        <property name="minimumSize">
         <size>
-         <width>40</width>
+         <width>100</width>
          <height>90</height>
         </size>
        </property>
@@ -124,7 +124,7 @@ MIDI</string>
        </property>
        <property name="minimumSize">
         <size>
-         <width>40</width>
+         <width>100</width>
          <height>90</height>
         </size>
        </property>
@@ -155,7 +155,7 @@ MIDI</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="pb_tremolo">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -163,12 +163,12 @@ MIDI</string>
         </size>
        </property>
        <property name="text">
-        <string>Nota</string>
+        <string>tremolo</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="pb_gradual_tremolo">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -176,7 +176,8 @@ MIDI</string>
         </size>
        </property>
        <property name="text">
-        <string>Nota</string>
+        <string>tremolo 
+gradual</string>
        </property>
       </widget>
      </item>

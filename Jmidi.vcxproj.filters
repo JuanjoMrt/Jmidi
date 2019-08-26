@@ -108,6 +108,9 @@
     <ClCompile Include="src\calderon.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tremolo_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -136,6 +139,9 @@
     <QtMoc Include="header\calderondialog.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
+    <QtMoc Include="header\tremolo_dialog.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\qjmidi.ui">
@@ -154,6 +160,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="ui\calderondialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ui\tremolo_dialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

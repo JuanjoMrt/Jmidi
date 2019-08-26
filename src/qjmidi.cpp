@@ -90,7 +90,7 @@ QString QJmidi::readFile(QString filename) {
 void QJmidi::on_pb_nota_clicked()
 {
 	if (this->ui->tabWidget_tracks->count() <= 1) {
-		this->trackNotCreatedError();
+		this->trackError(1);
 	}
 	else {
 		//int velocity = QInputDialog::getInt(this, tr("QInputDialog::getInteger()"),
@@ -100,7 +100,7 @@ void QJmidi::on_pb_nota_clicked()
 		int result = note_dialog.exec();
 
 		if (result == QDialog::Accepted) {
-
+			
 			Note note = note_dialog.getNote();
 			this->ui->pte_output->appendPlainText(QString::QString("Nota con intensidad %0 y duracion %1.").arg(QString::number(note.velocity), 
 																												QString::number(note.CalculateDurationTicks(midifile.getTPQ()))));
@@ -161,7 +161,7 @@ void QJmidi::on_actionGenerate_Example_triggered()
 
 void QJmidi::on_pb_rest_clicked() {
 	if (this->ui->tabWidget_tracks->count() <= 1) {
-		this->trackNotCreatedError();
+		this->trackError(1);
 	}
 	else {
 		
@@ -194,7 +194,7 @@ void QJmidi::on_pb_add_track_tab_clicked() {
 void QJmidi::on_pb_generar_midi_clicked() {
 
 	if (this->ui->tabWidget_tracks->count() <= 1) {
-		this->trackNotCreatedError();
+		this->trackError(1);
 	}
 	else {
 	bool ok;
@@ -210,9 +210,12 @@ void QJmidi::on_pb_generar_midi_clicked() {
 }
 
 void QJmidi::on_pb_calderon_clicked() {
-
-	if (this->ui->tabWidget_tracks->count() <= 1) {
-		this->trackNotCreatedError();
+	
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo > 0) {
+		if(this->n_notas_tremolo > 0)
+			this->trackError(2);
+		else 
+			this->trackError(1);
 	}
 	else {
 		int index = this->ui->tabWidget_tracks->currentIndex();
@@ -251,6 +254,31 @@ void QJmidi::on_pb_calderon_clicked() {
 
 }
 
+void QJmidi::on_pb_tremolo_clicked() {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0) {
+		if (this->n_notas_tremolo != 0) {
+			this->trackError(2);
+		}
+		else {
+			this->trackError(1);
+		}
+	}
+	else {
+		TremoloDialog tremolo_dialog;
+		tremolo_dialog.setModal(true);
+		tremolo_dialog.setTempo(this->tempo);
+		int result = tremolo_dialog.exec();
+
+		if (result == QDialog::Accepted) {
+			this->tempo_tremolo = tremolo_dialog.getTremoloTempo();
+			this->n_notas_tremolo = tremolo_dialog.getNNotes();
+
+			int index = this->ui->tabWidget_tracks->currentIndex();
+			this->midifile.addTempo(index -1 , this->getLastTick(index - 1), tremolo_dialog.getTremoloTempo());
+		}
+	}
+}
+
 
 
 void QJmidi::addNote(Note note) {
@@ -271,7 +299,15 @@ void QJmidi::addNote(Note note) {
 	this->ui->pte_output->appendPlainText(QString("Añadida nota en el tick: %0").arg(QString::number(last_tick)));
 	// Get a track_tab_widget pointer to the object inside the tab
 	//track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
+
+	if (n_notas_tremolo > 0) {
+		note.setInTremolo(true);
+	}
+
 	current_tab->setNextNote(note);
+	
+
+	this->checkUpdateTremolo();
 
 	
 }
@@ -290,6 +326,8 @@ void QJmidi::addRest(bool is_quarter_note, int duration) {
 	// Store the rest in the current tab
 	track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
 	current_tab->setNextRest(is_quarter_note, duration);
+
+	this->checkUpdateTremolo();
 
 }
 
@@ -350,9 +388,14 @@ void QJmidi::addCalderon(Calderon calderon) {
 
 }
 
-void QJmidi::trackNotCreatedError() {
+void QJmidi::trackError(int error_num) {
 	QMessageBox message;
-	message.setText("Tienes que crear al menos una track para poder hacer esto.");
+
+	switch (error_num) {
+		case 1: message.setText("Tienes que crear al menos una track para poder hacer esto."); break;
+		case 2:	message.setText("No puedes hacer esto mientras estás en modo Trémolo"); break;
+		default:  message.setText("Se ha producido un error"); break;
+	}
 	message.exec();
 }
 
@@ -365,6 +408,17 @@ int QJmidi::getLastTick(int track) {
 	return last_tick;
 }
 
+void QJmidi::checkUpdateTremolo() {
+	if (this->n_notas_tremolo > 0) {
+		n_notas_tremolo--;
+		if (n_notas_tremolo == 0) {
+			int index = this->ui->tabWidget_tracks->currentIndex();
+			this->midifile.addTempo(index - 1, this->getLastTick(index - 1), this->tempo);
+		}
+	}
+
+}
+
 //void QJmidi::loadInstruments() {
 //	QString file = this->readFile(":/resources/instruments.txt");
 //	QStringList file_list = file.split(',');
@@ -374,4 +428,5 @@ int QJmidi::getLastTick(int track) {
 //	}
 //
 //}
+
 

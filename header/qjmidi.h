@@ -29,6 +29,7 @@
 #include "header/musical_symbol.h"
 #include "header/calderondialog.h"
 #include "header/calderon.h"
+#include "header/tremolo_dialog.h"
 
 using namespace std;
 
@@ -61,11 +62,17 @@ private slots:
 
     void on_pb_calderon_clicked();
 
+    void on_pb_tremolo_clicked();
+
 private:
     Ui::QJmidi *ui;
 	smf::MidiFile midifile;
 	int tempo = 60.0;
 	int channel = 9;
+
+	int tempo_tremolo = 0;
+	int n_notas_tremolo = 0;
+
 	vector< track_tab_widget *> vector_tab;
 	// Objeto tipo Sheet es realmente necesario?
 	//Sheet partitura;
@@ -80,8 +87,10 @@ private:
 	//Adds a Fermata or Calderon to the sheet
 	void addCalderon(Calderon calderon);
 
-	void trackNotCreatedError();
+	void trackError(int error_num);
 	int getLastTick(int track);
+
+	void checkUpdateTremolo();
 
 
 

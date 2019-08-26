@@ -29,18 +29,21 @@ SOURCES += \
         main.cpp \
         select_note_dialog.cpp \
         select_rest_widget.cpp \
-        src/*
+        src/* \
+        ui/tremolo_dialog.cpp
 
 HEADERS += \
         header/* \
         select_note_dialog.h \
-        select_rest_widget.h
+        select_rest_widget.h \
+        ui/tremolo_dialog.h
 
 FORMS += \
         select_instrument_dialog.ui \
         select_note_dialog.ui \
         select_rest_widget.ui \
-        ui/*
+        ui/* \
+        ui/tremolo_dialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

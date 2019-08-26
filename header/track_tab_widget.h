@@ -28,7 +28,7 @@ public:
 
 	//	Añade una nota a la representación visual, 
 	//	es decir, a la escena que representa la partitura
-	NotaRectItem* setNextGraphicsNote(int altura);
+	NotaRectItem* setNextGraphicsNote(int altura, bool in_tremolo);
 
 	//	Sets the velocity symbol
 	//	This method is also used to update it
@@ -38,7 +38,7 @@ public:
 	//	dicha clave
 	void SetClaveIntensidad(int min, int max);
 
-	void setNextNote(Note note);
+	void setNextNote(Note &note);
 
 	void setNextRest( bool is_quarter_note, int duration );
 

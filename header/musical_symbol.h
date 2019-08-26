@@ -13,7 +13,10 @@ public:
 
 	virtual bool isCalderon();
 	virtual int countNotesInside();
+	bool isInTremolo();
+	void setInTremolo(bool in_tremolo);
 
 private:
 	//qreal x,y;
+	bool is_in_tremolo = false;
 };

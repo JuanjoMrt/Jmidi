@@ -53,7 +53,7 @@ int track_tab_widget::getInstrument() {
 	return this->instrument;
 }
 
-NotaRectItem* track_tab_widget::setNextGraphicsNote(int altura) {
+NotaRectItem* track_tab_widget::setNextGraphicsNote(int altura, bool in_tremolo) {
 	NotaRectItem *nota = new NotaRectItem();
 	int y_max = 5 * this->distance_btw_hlines - nota->getNotaHeight();
 	int pos_y = (altura * y_max) / 127;
@@ -61,7 +61,10 @@ NotaRectItem* track_tab_widget::setNextGraphicsNote(int altura) {
 	nota = new NotaRectItem(this->x_next_note, y_max - pos_y);
 
 	this->scene->addItem(nota);
-	this->x_next_note += nota->getNotaWidth() + 5;
+	
+	this->x_next_note += nota->getNotaWidth();
+	if (!in_tremolo)
+		this->x_next_note += 5;
 
 	return nota;
 }
@@ -89,9 +92,9 @@ void track_tab_widget::SetClaveIntensidad(int min, int max) {
 	
 }
 
-void track_tab_widget::setNextNote(Note note) {
-
-	auto rect_item = this->setNextGraphicsNote(note.velocity);
+void track_tab_widget::setNextNote(Note &note) {
+	bool a = note.isInTremolo();
+	auto rect_item = this->setNextGraphicsNote(note.velocity, note.isInTremolo());
 
 	// Add the graphics of note to the scene
 	note.setNoteGraphicsItem(rect_item);

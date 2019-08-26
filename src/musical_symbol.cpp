@@ -16,3 +16,11 @@ bool MusicalSymbol::isCalderon() {
 int MusicalSymbol::countNotesInside() {
 	return 1;
 }
+
+bool MusicalSymbol::isInTremolo() {
+	return this->is_in_tremolo;
+}
+
+void MusicalSymbol::setInTremolo(bool in_tremolo) {
+	this->is_in_tremolo = in_tremolo;
+}
