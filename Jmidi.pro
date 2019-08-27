@@ -30,18 +30,21 @@ SOURCES += \
         select_note_dialog.cpp \
         select_rest_widget.cpp \
         src/* \
+        src/gradual_tremolo_dialog.cpp \
         ui/tremolo_dialog.cpp
 
 HEADERS += \
         header/* \
         select_note_dialog.h \
         select_rest_widget.h \
+        src/gradual_tremolo_dialog.h \
         ui/tremolo_dialog.h
 
 FORMS += \
         select_instrument_dialog.ui \
         select_note_dialog.ui \
         select_rest_widget.ui \
+        src/gradual_tremolo_dialog.ui \
         ui/* \
         ui/tremolo_dialog.ui
 

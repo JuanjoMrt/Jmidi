@@ -279,6 +279,55 @@ void QJmidi::on_pb_tremolo_clicked() {
 	}
 }
 
+void QJmidi::on_pb_gradual_tremolo_clicked() {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0) {
+		if (this->n_notas_tremolo != 0) {
+			this->trackError(2);
+		}
+		else {
+			this->trackError(1);
+		}
+	}
+	else {
+		GradualTremoloDialog gradual_tremolo_dialog;
+		gradual_tremolo_dialog.setCurrentTempo(this->tempo);
+		gradual_tremolo_dialog.setModal(true);
+		int result = gradual_tremolo_dialog.exec();
+		int start_inten = gradual_tremolo_dialog.startIntensity();
+		int end_inten = gradual_tremolo_dialog.endIntensity();
+		int min_ppm = gradual_tremolo_dialog.getMinimumPPM();
+		int max_ppm = gradual_tremolo_dialog.getMaximumPPM();
+		int index = this->ui->tabWidget_tracks->currentIndex();
+
+
+		if (result == QDialog::Accepted) {
+
+			if( gradual_tremolo_dialog.isTempo() ){
+				int num_notes = gradual_tremolo_dialog.numNotes();
+				this->n_notas_tremolo = num_notes;
+				for (int i = 1; i <= num_notes; i++) {
+					this->midifile.addTempo(index - 1, this->getLastTick(index - 1),
+						min_ppm + ((max_ppm - min_ppm) / num_notes)*i);
+
+					Note note;
+					note.duration_symbol = NORMAL;
+					if (start_inten < end_inten)
+						note.velocity = start_inten + ((end_inten - start_inten) / num_notes)*i;
+					else
+						note.velocity = start_inten - ((start_inten - end_inten) / num_notes)*i;
+
+					this->addNote(note);
+
+				}
+			}
+			else {
+				// Tremolo related to Intensity
+			}
+
+		}
+	}
+}
+
 
 
 void QJmidi::addNote(Note note) {
@@ -428,5 +477,3 @@ void QJmidi::checkUpdateTremolo() {
 //	}
 //
 //}
-
-

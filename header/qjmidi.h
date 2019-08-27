@@ -30,6 +30,7 @@
 #include "header/calderondialog.h"
 #include "header/calderon.h"
 #include "header/tremolo_dialog.h"
+#include "header/gradual_tremolo_dialog.h"
 
 using namespace std;
 
@@ -63,6 +64,8 @@ private slots:
     void on_pb_calderon_clicked();
 
     void on_pb_tremolo_clicked();
+
+    void on_pb_gradual_tremolo_clicked();
 
 private:
     Ui::QJmidi *ui;
