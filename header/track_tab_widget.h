@@ -52,6 +52,8 @@ public:
 	// Returns the number of symbols in the score
 	int scoreSize();
 
+	void setAnotacion(QString anotacion, bool on_top);
+
 
 private:
     Ui::track_tab_widget *ui;

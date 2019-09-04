@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>901</width>
-    <height>738</height>
+    <height>655</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QPushButton" name="pb_generar_midi">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>780</x>
       <y>500</y>
       <width>100</width>
       <height>90</height>
@@ -242,9 +242,19 @@ gradual</string>
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionLimpiar"/>
     <addaction name="actionGenerate_Example"/>
    </widget>
+   <widget class="QMenu" name="menuEditar">
+    <property name="title">
+     <string>Editar</string>
+    </property>
+    <addaction name="actionCambiar_clave"/>
+    <addaction name="actionCambiar_Tempo"/>
+    <addaction name="actionA_adir_anotaci_n"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEditar"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -258,6 +268,26 @@ gradual</string>
   <action name="actionGenerate_Example">
    <property name="text">
     <string>Generate Example</string>
+   </property>
+  </action>
+  <action name="actionCambiar_clave">
+   <property name="text">
+    <string>Cambiar clave</string>
+   </property>
+  </action>
+  <action name="actionCambiar_Tempo">
+   <property name="text">
+    <string>Cambiar Tempo</string>
+   </property>
+  </action>
+  <action name="actionA_adir_anotaci_n">
+   <property name="text">
+    <string>Añadir anotación</string>
+   </property>
+  </action>
+  <action name="actionLimpiar">
+   <property name="text">
+    <string>Nuevo</string>
    </property>
   </action>
  </widget>

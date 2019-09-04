@@ -31,6 +31,7 @@
 #include "header/calderon.h"
 #include "header/tremolo_dialog.h"
 #include "header/gradual_tremolo_dialog.h"
+#include "header/anotaciondialog.h"
 
 using namespace std;
 
@@ -67,11 +68,13 @@ private slots:
 
     void on_pb_gradual_tremolo_clicked();
 
+    void on_actionA_adir_anotaci_n_triggered();
+
 private:
     Ui::QJmidi *ui;
 	smf::MidiFile midifile;
 	int tempo = 60.0;
-	int channel = 9;
+	const int channel = 9;
 
 	int tempo_tremolo = 0;
 	int n_notas_tremolo = 0;

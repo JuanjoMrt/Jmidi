@@ -15,7 +15,7 @@ enum duration_symbols {
 };
 
 
-class Note : public MusicalSymbol{
+class Note : public MusicalSymbol {
 public:
 	Note();
 	Note(const Note& note);

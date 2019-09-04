@@ -255,3 +255,12 @@ int track_tab_widget::getNumberNotes(int index) {
 int track_tab_widget::scoreSize() {
 	return this->tab_score.size();
 }
+
+void track_tab_widget::setAnotacion(QString anotacion, bool on_top) {
+	QGraphicsTextItem* an = new QGraphicsTextItem(anotacion);
+	if (on_top)
+		an->setPos(this->x_next_note, -20);
+	else
+		an->setPos(this->x_next_note, 5 * this->distance_btw_hlines + 10);
+	this->scene->addItem(an);
+}
