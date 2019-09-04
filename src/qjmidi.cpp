@@ -350,6 +350,30 @@ void QJmidi::on_actionA_adir_anotaci_n_triggered() {
 	}
 }
 
+void QJmidi::on_actionCambiar_clave_triggered() {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0) {
+		if (this->n_notas_tremolo != 0) {
+			this->trackError(2);
+		}
+		else {
+			this->trackError(1);
+		}
+	}
+	else {
+		AlturaDialog altura_dialog;
+		altura_dialog.setModal(true);
+		int result = altura_dialog.exec();
+
+		// Comprobamos que no haya sido cancelado
+		if (result == QDialog::Accepted) {
+			int index = this->ui->tabWidget_tracks->currentIndex();
+			track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
+			current_tab->SetClaveIntensidad(altura_dialog.getMinimum(), altura_dialog.getMaximum());
+		}
+	}
+
+}
+
 
 
 void QJmidi::addNote(Note note) {
@@ -499,5 +523,3 @@ void QJmidi::checkUpdateTremolo() {
 //	}
 //
 //}
-
-

@@ -32,6 +32,7 @@
 #include "header/tremolo_dialog.h"
 #include "header/gradual_tremolo_dialog.h"
 #include "header/anotaciondialog.h"
+#include "header/alturadialog.h"
 
 using namespace std;
 
@@ -69,6 +70,8 @@ private slots:
     void on_pb_gradual_tremolo_clicked();
 
     void on_actionA_adir_anotaci_n_triggered();
+
+    void on_actionCambiar_clave_triggered();
 
 private:
     Ui::QJmidi *ui;

@@ -249,9 +249,9 @@ gradual</string>
     <property name="title">
      <string>Editar</string>
     </property>
-    <addaction name="actionCambiar_clave"/>
-    <addaction name="actionCambiar_Tempo"/>
     <addaction name="actionA_adir_anotaci_n"/>
+    <addaction name="actionCambiar_Tempo"/>
+    <addaction name="actionCambiar_clave"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEditar"/>
