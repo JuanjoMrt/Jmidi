@@ -264,3 +264,4 @@ void track_tab_widget::setAnotacion(QString anotacion, bool on_top) {
 		an->setPos(this->x_next_note, 5 * this->distance_btw_hlines + 10);
 	this->scene->addItem(an);
 }
+

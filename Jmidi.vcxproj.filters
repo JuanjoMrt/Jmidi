@@ -120,6 +120,9 @@
     <ClCompile Include="src\alturadialog.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tempodialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -160,6 +163,9 @@
     <QtMoc Include="header\alturadialog.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
+    <QtMoc Include="header\tempodialog.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\qjmidi.ui">
@@ -190,6 +196,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="ui\alturadialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ui\tempodialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

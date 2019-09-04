@@ -55,6 +55,7 @@ public:
 	void setAnotacion(QString anotacion, bool on_top);
 
 
+
 private:
     Ui::track_tab_widget *ui;
 	int instrument;

@@ -374,6 +374,35 @@ void QJmidi::on_actionCambiar_clave_triggered() {
 
 }
 
+void QJmidi::on_actionCambiar_Tempo_triggered() {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0) {
+		if (this->n_notas_tremolo != 0) {
+			this->trackError(2);
+		}
+		else {
+			this->trackError(1);
+		}
+	}
+	else {
+		int index = this->ui->tabWidget_tracks->currentIndex();
+		track_tab_widget* current_tab = qobject_cast<track_tab_widget*>(this->ui->tabWidget_tracks->widget(index));
+
+		TempoDialog tempo_dialog;
+		tempo_dialog.setModal(true);
+		tempo_dialog.setTempo(this->tempo);
+		int result = tempo_dialog.exec();
+
+		if (result == QDialog::Accepted) {
+
+			this->midifile.addTempo(index - 1, this->getLastTick(index - 1), tempo_dialog.getTempo());
+			current_tab->setAnotacion(QString("Ca. %0").arg(QString::number(tempo_dialog.getTempo()) ), true);
+			this->tempo = tempo_dialog.getTempo();
+			/*this->setTempo(tempo_dialog.getTempo());*/
+		}
+	}
+
+}
+
 
 
 void QJmidi::addNote(Note note) {
