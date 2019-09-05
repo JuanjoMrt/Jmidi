@@ -6,9 +6,6 @@ QJmidi::QJmidi(QWidget *parent) :
     ui(new Ui::QJmidi)
 {
     ui->setupUi(this);
-
-	// leemos el archivo de instrumentos
-	//this->loadInstruments();
 	
 }
 
@@ -89,7 +86,7 @@ QString QJmidi::readFile(QString filename) {
 
 void QJmidi::on_pb_nota_clicked()
 {
-	if (this->ui->tabWidget_tracks->count() <= 1) {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->ui->tabWidget_tracks->currentIndex() == 0) {
 		this->trackError(1);
 	}
 	else {
@@ -160,7 +157,7 @@ void QJmidi::on_actionGenerate_Example_triggered()
 }
 
 void QJmidi::on_pb_rest_clicked() {
-	if (this->ui->tabWidget_tracks->count() <= 1) {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->ui->tabWidget_tracks->currentIndex() == 0) {
 		this->trackError(1);
 	}
 	else {
@@ -193,7 +190,7 @@ void QJmidi::on_pb_add_track_tab_clicked() {
 
 void QJmidi::on_pb_generar_midi_clicked() {
 
-	if (this->ui->tabWidget_tracks->count() <= 1) {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->ui->tabWidget_tracks->currentIndex() == 0) {
 		this->trackError(1);
 	}
 	else {
@@ -211,7 +208,7 @@ void QJmidi::on_pb_generar_midi_clicked() {
 
 void QJmidi::on_pb_calderon_clicked() {
 	
-	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo > 0) {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo > 0 || this->ui->tabWidget_tracks->currentIndex() == 0) {
 		if(this->n_notas_tremolo > 0)
 			this->trackError(2);
 		else 
@@ -255,7 +252,7 @@ void QJmidi::on_pb_calderon_clicked() {
 }
 
 void QJmidi::on_pb_tremolo_clicked() {
-	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0) {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0 || this->ui->tabWidget_tracks->currentIndex() == 0) {
 		if (this->n_notas_tremolo != 0) {
 			this->trackError(2);
 		}
@@ -280,7 +277,7 @@ void QJmidi::on_pb_tremolo_clicked() {
 }
 
 void QJmidi::on_pb_gradual_tremolo_clicked() {
-	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0) {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0 || this->ui->tabWidget_tracks->currentIndex() == 0) {
 		if (this->n_notas_tremolo != 0) {
 			this->trackError(2);
 		}
@@ -321,7 +318,25 @@ void QJmidi::on_pb_gradual_tremolo_clicked() {
 				}
 			}
 			else {
-				// Tremolo related to Intensity
+				int num_notes = gradual_tremolo_dialog.numNotes();
+				this->n_notas_tremolo = num_notes;
+				for (int i = 1; i <= num_notes; i++) {
+					Note note;
+					note.duration_symbol = NORMAL;
+					if (start_inten < end_inten){
+						this->midifile.addTempo(index - 1, this->getLastTick(index - 1),
+							min_ppm + ((max_ppm - min_ppm) / num_notes)*i);
+						note.velocity = start_inten + ((end_inten - start_inten) / num_notes)*i;
+					}
+					else{
+						this->midifile.addTempo(index - 1, this->getLastTick(index - 1),
+							max_ppm - ((max_ppm - min_ppm) / num_notes)*i);
+						note.velocity = start_inten - ((start_inten - end_inten) / num_notes)*i;
+					}
+						
+
+					this->addNote(note);
+				}
 			}
 
 		}
@@ -329,7 +344,7 @@ void QJmidi::on_pb_gradual_tremolo_clicked() {
 }
 
 void QJmidi::on_actionA_adir_anotaci_n_triggered() {
-	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0) {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0 || this->ui->tabWidget_tracks->currentIndex() == 0) {
 		if (this->n_notas_tremolo != 0) {
 			this->trackError(2);
 		}
@@ -351,7 +366,7 @@ void QJmidi::on_actionA_adir_anotaci_n_triggered() {
 }
 
 void QJmidi::on_actionCambiar_clave_triggered() {
-	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0) {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0 || this->ui->tabWidget_tracks->currentIndex() == 0) {
 		if (this->n_notas_tremolo != 0) {
 			this->trackError(2);
 		}
@@ -375,7 +390,7 @@ void QJmidi::on_actionCambiar_clave_triggered() {
 }
 
 void QJmidi::on_actionCambiar_Tempo_triggered() {
-	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0) {
+	if (this->ui->tabWidget_tracks->count() <= 1 || this->n_notas_tremolo != 0 || this->ui->tabWidget_tracks->currentIndex() == 0) {
 		if (this->n_notas_tremolo != 0) {
 			this->trackError(2);
 		}
@@ -516,7 +531,7 @@ void QJmidi::trackError(int error_num) {
 	QMessageBox message;
 
 	switch (error_num) {
-		case 1: message.setText("Tienes que crear al menos una track para poder hacer esto."); break;
+		case 1: message.setText("Tienes que crear al menos una track para poder hacer esto y tenerla abierta."); break;
 		case 2:	message.setText("No puedes hacer esto mientras estás en modo Trémolo"); break;
 		default:  message.setText("Se ha producido un error"); break;
 	}
